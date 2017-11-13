@@ -1,22 +1,14 @@
-﻿using Java.Util;
+﻿
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LearningAlgo
 {
     class SquareCalculatClass
     {
 
-        // DBにする配列達
-        string[] FlowTable = new string[3];
-        string[] PrintTable = new string[4];
-        string[] KindTable = new string[3];
-
-
-
-        ArrayDeque NumberStack = new ArrayDeque();
-        ArrayDeque SymbolStack = new ArrayDeque();
+        Stack<int> NumberStack = new Stack<int>();
+        Stack<string> SymbolStack = new Stack<string>();
         public SquareCalculatClass() { }
 
         // 今後i,jとか数値が変化するやつをハッシュマップで管理したい
@@ -49,9 +41,9 @@ namespace LearningAlgo
                 if (StackText[length].ToString().Equals("→"))
                 {
                     
-                    for (int a= NumberStack.Size()-1; a > 0; a--)
+                    for (int a= NumberStack.Count-1; a > 0; a--)
                     {
-                        System.Diagnostics.Debug.WriteLine("残りはこれ:" + NumberStack.ToString()+a);
+                        System.Diagnostics.Debug.WriteLine("残りはこれ:" + a);
                         CalculationMethod();
                     }
                     break;
@@ -70,7 +62,7 @@ namespace LearningAlgo
                                 CalculationMethod();
                         }
 
-                        SymbolStack.Push(StackText[length]);
+                        SymbolStack.Push(StackText[length].ToString());
                         System.Diagnostics.Debug.WriteLine("中身：" + SymbolStack.ToString());
                         System.Diagnostics.Debug.WriteLine("数値中身：" + NumberStack.ToString());
                         Calculat = 2;
@@ -88,9 +80,9 @@ namespace LearningAlgo
 
                         }
                         Calculat = 1;
-                        SymbolStack.Push(StackText[length]);
-                        System.Diagnostics.Debug.WriteLine("中身：" + SymbolStack.ToString());
-                        System.Diagnostics.Debug.WriteLine("数値中身：" + NumberStack.ToString());
+                        SymbolStack.Push(StackText[length].ToString());
+                        System.Diagnostics.Debug.WriteLine("中身：" + SymbolStack.Peek().ToString());
+                        System.Diagnostics.Debug.WriteLine("数値中身：" + NumberStack.Peek().ToString());
                         Tenmade = 0;
                     }
                     else if (StackText[length].ToString().Equals("i") || StackText[length].ToString().Equals("j"))
@@ -113,16 +105,24 @@ namespace LearningAlgo
                         }
                         else
                         {
-                            NumberStack.Push(StackText[length]);
+                            NumberStack.Push(int.Parse(StackText[length].ToString()));
                         }
                         Tenmade = 1;
 
-                        System.Diagnostics.Debug.WriteLine("中身：" + SymbolStack.ToString());
-                        System.Diagnostics.Debug.WriteLine("数値中身：" + NumberStack.ToString());
+                        try
+                        {
+                            System.Diagnostics.Debug.WriteLine("中身：" + SymbolStack.Peek().ToString());
+
+                        }
+                        catch (Exception e)
+                        {
+
+                            System.Diagnostics.Debug.WriteLine("数値中身：" + NumberStack.Peek().ToString());
+                        }
                     }
                 }
             }
-            System.Diagnostics.Debug.WriteLine("最終結果：" + NumberStack.ToString());
+            System.Diagnostics.Debug.WriteLine("最終結果：" + NumberStack.Peek().ToString());
             VarManagement[FinalizdKey.ToString()] = int.Parse(NumberStack.Pop().ToString());
 
             return VarManagement;

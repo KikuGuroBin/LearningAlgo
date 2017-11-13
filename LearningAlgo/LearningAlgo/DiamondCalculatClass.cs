@@ -1,14 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace LearningAlgo
 {
@@ -16,8 +8,14 @@ namespace LearningAlgo
     {
         public DiamondCalculatClass() { }
 
+        string RightArithExpression;
+        string LeftArithExpression;
+
         public string DiamondCalculat(Dictionary<string, int> VarManagement, string ArithExpression)
         {
+
+            char[] StackText = ArithExpression.ToCharArray();
+            
 
 
 
