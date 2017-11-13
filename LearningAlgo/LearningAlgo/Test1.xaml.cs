@@ -45,6 +45,10 @@ namespace LearningAlgo
             System.Diagnostics.Debug.WriteLine("ここ一番で決める:"+VarManegement["i"].ToString());
 
 
+            DiamondCalculatClass diamondCalculat = new DiamondCalculatClass();
+
+
+
         }
     }
 }
