@@ -37,11 +37,11 @@ namespace LearningAlgo
 
             // 変数を格納したDB参照予定だが現段階ではDictionalyで管理
             Dictionary<string, int> VarManegement = new Dictionary<string, int>();
-            VarManegement["i"] = 2;
-            VarManegement["j"] = 0;
+            VarManegement["i"] = 3;
+            VarManegement["j"] = 5;
 
             SquareCalculatClass squareCalculat =new SquareCalculatClass();
-            VarManegement = squareCalculat.SquareCalculate(VarManegement, "i＋1＋2×3－10÷5→i");
+            VarManegement = squareCalculat.SquareCalculate(VarManegement, "1＋i＋3×j＋i→i");
             System.Diagnostics.Debug.WriteLine("ここ一番で決める:"+VarManegement["i"].ToString());
 
 

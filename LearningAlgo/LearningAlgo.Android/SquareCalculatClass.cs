@@ -20,9 +20,9 @@ namespace LearningAlgo
         public SquareCalculatClass() { }
 
         // 今後i,jとか数値が変化するやつをハッシュマップで管理したい
-        public Dictionary<string, int> SquareCalculate(Dictionary<string, int> VarManagement,string ArithExpression)
+        public Dictionary<string, int> SquareCalculate(Dictionary<string, int> VarManagement, string ArithExpression)
         {
-           
+
 
             // 必要な工程   形種類の判定
 
@@ -48,8 +48,10 @@ namespace LearningAlgo
 
                 if (StackText[length].ToString().Equals("→"))
                 {
-                    for (Popcount++; Popcount >= 0; Popcount--)
+                    
+                    for (int a= NumberStack.Size()-1; a > 0; a--)
                     {
+                        System.Diagnostics.Debug.WriteLine("残りはこれ:" + NumberStack.ToString()+a);
                         CalculationMethod();
                     }
                     break;
@@ -65,8 +67,7 @@ namespace LearningAlgo
 
                         if (Calculat >= 2)
                         {
-                            CalculationMethod();
-
+                                CalculationMethod();
                         }
 
                         SymbolStack.Push(StackText[length]);
@@ -121,7 +122,7 @@ namespace LearningAlgo
                     }
                 }
             }
-            System.Diagnostics.Debug.WriteLine("最終結果：" + NumberStack.Peek());
+            System.Diagnostics.Debug.WriteLine("最終結果：" + NumberStack.ToString());
             VarManagement[FinalizdKey.ToString()] = int.Parse(NumberStack.Pop().ToString());
 
             return VarManagement;
@@ -182,17 +183,5 @@ namespace LearningAlgo
 
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
