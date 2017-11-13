@@ -134,6 +134,72 @@
     </Reference>
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\GREATER-THAN_OVER_EQUAL_TO_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\GREATER-THAN_SIGN_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\i_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\j_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\LESS-THAN_OVER_EQUAL_TO_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\LESS-THAN_SIGN_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rhombus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\STRAT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\x_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\アイコン.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\アルゴリズム.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\開始.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\出力.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\処理.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\%25_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\-_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\+_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\=_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\≠_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\÷_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\colon_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\END.png" />
+  </ItemGroup>
   <Import Project="..\LearningAlgo\LearningAlgo.projitems" Label="Shared" Condition="Exists('..\LearningAlgo\LearningAlgo.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
