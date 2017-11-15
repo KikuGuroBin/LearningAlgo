@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Test1.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)TrapezoidCalculateClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)MainPage.xaml">

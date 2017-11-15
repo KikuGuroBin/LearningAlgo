@@ -40,7 +40,7 @@ namespace LearningAlgo
             string[] PrintTable = new string[4];
             string[] KindTable = new string[3];
 
-            // 変数を格納したDB参照予定だが現段階ではDictionalyで管理
+            // 変数を格納したDBからDictionaryにぶち込む
             Dictionary<string, int> VarManegement = new Dictionary<string, int>();
             VarManegement["i"] = 3;
             VarManegement["j"] = 5;
@@ -64,6 +64,16 @@ namespace LearningAlgo
             DiamondCalculatClass diamondCalculat = new DiamondCalculatClass();
             (string Symbol,int b,int c) Kekka = diamondCalculat.DiamondCalculat(VarManegement, Shiki);
             */
+
+            /*
+             * ♢
+            Shiki = "1＋i＋3×j＋i≧3＋4";
+
+            //Symbolは0がNo、1がYes、：が判定
+            DiamondCalculatClass diamondCalculat = new DiamondCalculatClass();
+            bool Kekka = diamondCalculat.DiamondCalculat(VarManegement, Shiki);
+            */
+
 
         }
     }
