@@ -200,6 +200,54 @@
   <ItemGroup>
     <BundleResource Include="Resources\END.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\traceb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\quizb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\main＿background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\0_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\1_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\2_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\3_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\4_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\5_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\6_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\7_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\8_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\9_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\girl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\grid01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\grid02.png" />
+  </ItemGroup>
   <Import Project="..\LearningAlgo\LearningAlgo.projitems" Label="Shared" Condition="Exists('..\LearningAlgo\LearningAlgo.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
