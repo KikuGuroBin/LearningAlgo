@@ -13,15 +13,23 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CalculateClass.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DBadd.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DiamondCalculatClass.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FlowPartsTable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FlowTable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ISQLite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)OutputTable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SquareCalculatClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Test1.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)TodoItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TodoRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TrapezoidCalculateClass.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TypeTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)MainPage.xaml">

@@ -47,26 +47,27 @@ namespace LearningAlgo
             string Shiki;
 
             /*
-             * □
+             * □*/
              Shiki = "1＋i＋3×j＋i→i";
 
-            SquareCalculatClass squareCalculat =new SquareCalculatClass();
-            VarManegement = squareCalculat.SquareCalculate(VarManegement,Shiki);
-            System.Diagnostics.Debug.WriteLine("ここ一番で決める:"+VarManegement["i"].ToString());
-            */
+             SquareCalculatClass squareCalculat =new SquareCalculatClass();
+             VarManegement = squareCalculat.SquareCalculate(VarManegement,Shiki);
+             System.Diagnostics.Debug.WriteLine("ここ一番で決める:"+VarManegement["i"].ToString());
+
 
 
             /*
-             * ♢
+             * ♢*/
             Shiki = "1＋i＋3×j＋i≧3＋4";
+            VarManegement["i"] = 3;
 
             //Symbolは0がNo、1がYes、：が判定
             DiamondCalculatClass diamondCalculat = new DiamondCalculatClass();
             (string Symbol,int b,int c) Kekka = diamondCalculat.DiamondCalculat(VarManegement, Shiki);
-            */
+            
 
             /*
-             * ♢
+             * 台形
             Shiki = "1＋i＋3×j＋i≧3＋4";
 
             //Symbolは0がNo、1がYes、：が判定
