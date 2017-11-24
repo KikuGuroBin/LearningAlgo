@@ -14,6 +14,12 @@ namespace LearningAlgo
 	public partial class Test1 : ContentPage
 	{
 
+        /*
+         * gitテストだよ〜〜〜〜
+         */
+
+
+
         // DBにする配列達
         string[] FlowTable = new string[3];
         string[] PrintTable = new string[4];
