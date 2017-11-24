@@ -13,8 +13,6 @@ namespace LearningAlgo
 		{
 			InitializeComponent();
 
-            var test;
-
             // 画面遷移
             Navigation.PushAsync(new Test1());
 		}
