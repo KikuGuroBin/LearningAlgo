@@ -16,6 +16,9 @@ namespace LearningAlgo
         {
             InitializeComponent();
 
+            DBadd dBadd = new DBadd();
+
+
             // プログラムでのレイアウト追加方法
             Label TestNo1Label = new Label
             {
