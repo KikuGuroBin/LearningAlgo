@@ -30,6 +30,7 @@ namespace LearningAlgo
         double SidePanelHeight;
         private bool PanelShowing
 
+
         {
             get
             {
@@ -52,17 +53,14 @@ namespace LearningAlgo
             ShortCutPane = SidePane;
 
             /* iOSだけ、上部に余白をとる */
-            Padding = new Thickness(0, Device.RuntimePlatform == Device.iOS ? 20 : 0, 0, 0);
+            /* Padding = new Thickness(0, Device.RuntimePlatform == Device.iOS ? 20 : 0, 0, 0);
 
-            /* アイテムをImagesourceFormPageで参照できるようにメンバ変数に格納 */
-
-
+            アイテムをImagesourceFormPageで参照できるようにメンバ変数に格納 */
 
 
-            /* データバインディング */
-            BindingContext = new ShortCutListViewModel();
-            ShortCutList = ShortList;
 
+
+           
             // DBにする配列達
             string[] FlowTable = new string[3];
             string[] PrintTable = new string[4];
@@ -140,13 +138,16 @@ namespace LearningAlgo
         {
             /* 生成したパネルをメインのレイアウトに組み込む */
             MainLayout.Children.Add(ShortCutPane,
-                Constraint.RelativeToParent((p) => {
-                return -PanelWidth;
+                Constraint.RelativeToParent((p) =>
+                {
+                    return -PanelWidth;
                 }),
-                Constraint.RelativeToParent((p) => {
+                Constraint.RelativeToParent((p) =>
+                {
                     return 0;
                 }),
-                Constraint.RelativeToParent((p) => {
+                Constraint.RelativeToParent((p) =>
+                {
                     if (PanelWidth == -1)
                     {
                         PanelWidth = p.Width / 3;
@@ -154,7 +155,8 @@ namespace LearningAlgo
 
                     return PanelWidth;
                 }),
-                Constraint.RelativeToParent((p) => {
+                Constraint.RelativeToParent((p) =>
+                {
                     return p.Height;
                 })
             );
@@ -209,35 +211,9 @@ namespace LearningAlgo
         void KeyPanel(object sender, EventArgs args)
         {
             KeybordAnimatePanel();
+
         }
 
 
-    }
-    class ShortCutListViewModel : INotifyPropertyChanged
-    {
-        public ObservableCollection<ShortCutListItem> ShortCutItems { get; set; }
-
-        public ShortCutListViewModel()
-        {
-            ShortCutItems = new ObservableCollection<ShortCutListItem>(new[]
-            {
-                new ShortCutListItem { Id = 10, Title = "コピー", Imagesource = "Side_Start.png" },
-                new ShortCutListItem { Id = 11, Title = "カット", Imagesource = "Side_End.png" },
-                new ShortCutListItem { Id = 12, Title = "ペースト", Imagesource = "Side_Arth01.png" },
-                new ShortCutListItem { Id = 20, Title = "全選択", Imagesource = "Side_Out.png" }
-
-            });
-        }
-
-        #region INotifyPropertyChanged Implementation
-        public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            if (PropertyChanged == null)
-                return;
-
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
     }
 }

@@ -117,6 +117,11 @@
     <BundleResource Include="Resources\Icon-Small%402x.png" />
     <BundleResource Include="Resources\Icon-Small%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\Side_He.png" />
+    <BundleResource Include="Resources\Side_Du.png" />
+    <BundleResource Include="Resources\Side_Dd.png" />
+    <BundleResource Include="Resources\Side_Hi.png" />
+    <BundleResource Include="Resources\Side_Sq.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -135,21 +140,6 @@
       <HintPath>..\..\packages\Xamarin.Forms.2.4.0.280\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.iOS" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Side_Start.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Print.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Process.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Side_End.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\STRAT.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Algo.png" />

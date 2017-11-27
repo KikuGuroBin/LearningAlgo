@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LearningAlgo.Test1">
-	<RelativeLayout HorizontalOptions="FillAndExpand"
+<ContentPage 
+        BackgroundColor="#f7f7f7"
+        xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LearningAlgo.Test1">
+    <RelativeLayout HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand"
                     x:Name="MainLayout">
         <StackLayout x:Name="SendItems" 
@@ -15,35 +17,89 @@
                      VerticalOptions="FillAndExpand"
                      HorizontalOptions="FillAndExpand">
             <Button 
+                TextColor="#12a7eb"
                 WidthRequest="500"
                 Text="SideP"
                 Clicked="SidePanel"
             />
         </StackLayout>
-
-
-
-
-
-        
         <StackLayout x:Name="SidePane"
-                     BackgroundColor="White">
-            <ListView x:Name="ShortList"
-                      SeparatorVisibility="Default"
-                      ItemsSource="{Binding ShortCutItems}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout HorizontalOptions="FillAndExpand">
-                                <Image   HorizontalOptions="Center"
-                                         VerticalOptions="Center"
-                                         Source="{Binding Imagesource}"
-                                         />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                     BackgroundColor="#12a7eb">
+            <ScrollView>
+<Grid>
+  <Grid.RowDefinitions>
+    <RowDefinition Height="50" />
+    <RowDefinition Height="50" />
+    <RowDefinition Height="50" />
+    <RowDefinition Height="50" />
+    <RowDefinition Height="50" />
+    <RowDefinition Height="50" />
+    <RowDefinition Height="50" />
+    <RowDefinition Height="50" />
+    <RowDefinition Height="50" />
+    <RowDefinition Height="50" />
+    <RowDefinition Height="50" />
+    <RowDefinition Height="50" />
+<RowDefinition Height="50" />
+    <RowDefinition Height="50" />
+  </Grid.RowDefinitions>
+  <Grid.ColumnDefinitions>
+    <ColumnDefinition Width="*" />
+  </Grid.ColumnDefinitions>
+
+                      <Image Grid.Row="0" 
+                        Grid.Column="0"
+                        x:Name="Sq"
+                        Source="Side_Sq.png"
+                        BackgroundColor="Fuchsia"
+                    />
+                    <Image Grid.Row="1" 
+                        Grid.Column="0"
+                        x:Name="Hi"
+                        Source="Side_Hi.png"
+                        BackgroundColor="Green"/>
+                    <Image Grid.Row="2" 
+                        Grid.Column="0"
+                        x:Name="He"
+                        Source="Side_He.png"
+                        BackgroundColor="Maroon"/>
+                    <Image Grid.Row="3" 
+                        Grid.Column="0"
+                        x:Name="Du"
+                        Source="Side_Du.png"
+                    />
+
+                    <Image Grid.Row="4" 
+                        Grid.Column="0"
+                        Source="Side_Dd.png"
+                    />
+
+                    <Image Grid.Row="5" 
+                        Grid.Column="0"
+                        Source="Side_Dd.png"
+                    />
+
+                    <Image Grid.Row="6"
+                        Grid.Column="0"
+                        Source="Side_Dd.png"
+                    />
+                    <Image Grid.Row="7" 
+                        Grid.Column="0"
+                        x:Name="Dd"
+                        Source="Side_Dd.png"
+                    />
+
+
+
+                    
+</Grid>
+
+
+
+
+                    
+
+            </ScrollView>
         </StackLayout>
     </RelativeLayout>
 </ContentPage>
