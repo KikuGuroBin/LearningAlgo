@@ -52,8 +52,11 @@ namespace LearningAlgo
                 System.Console.WriteLine("typetableのデータだよ～" + typeTest);
                 System.Console.WriteLine("outputtableのデータだよ～" + outputTest);
 
-                var stock = db.Get<FlowTable>();
-                var stoklist = db.Table<FlowTable>;();
+                var stock = db.Get<FlowTable>(1);
+                var stoklist = db.Table<FlowTable>();
+
+                System.Console.WriteLine("Get" + stock);
+                System.Console.WriteLine("Table" + stoklist);
             }
 
             private void ExecuteNonQuery(string v)
