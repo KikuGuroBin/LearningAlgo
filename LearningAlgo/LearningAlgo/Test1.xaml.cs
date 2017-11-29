@@ -1,9 +1,12 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SQLite.Net;
+using SQLite.Net.Attributes;
+
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -20,6 +23,12 @@ namespace LearningAlgo
             InitializeComponent();
             //①起動②モード？
 
+<<<<<<< HEAD
+=======
+            DBadd dBadd = new DBadd();
+            dBadd.DataBaseRepository();
+
+>>>>>>> 99b8510... DB
 
             //起動時にどうせ使う第壱テーブルを読み込む
             DbInsertLint = new PresetLoadClass().PresetLoad(DbInsertLint);

@@ -5,9 +5,8 @@ namespace LearningAlgo
 {
     public class FlowPartsTable
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey]
         public string flow_id { get; set; }
-        [PrimaryKey, AutoIncrement]
         public int identification_id { get; set; }
         public int type_id { get; set; }
     }
