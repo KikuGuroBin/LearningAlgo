@@ -21,12 +21,12 @@ namespace LearningAlgo
             using (var connection = await CreateConnection())
             // DBへのコネクションを取得してくるConnection())
             {
-                var item = new  { flow_id = "f01", flow_name = "f01", comment = "test" };
+                var item = new FlowTable { flow_id = "f01", flow_name = "f01", comment = "test" };
                 connection.Insert(item);
 
-                foreach (var items in (from x in connection.Table<FlowTable>() orderby x.flow_id select "*"))
-                { 
-                    System.Diagnostics.Debug.WriteLine(item.flow_name + item.flow_name + item.comment + "おおおおあああおお");
+                foreach (var items in (from x in connection.Table<FlowTable>() orderby x.flow_id select x))
+                {
+                    System.Diagnostics.Debug.WriteLine(items.flow_id + items.flow_name + items.comment);
                 }
             }
         }
@@ -55,10 +55,9 @@ namespace LearningAlgo
                 //ファイルが存在する場合はそのままコネクションの作成を行う
                 IFile file = await rootFolder.CreateFileAsync(DatabasesFileName, CreationCollisionOption.OpenIfExists);
                 var connection = new SQLiteConnection(file.Path);
-                if (connection.GetTableInfo("FlowTable").Count <= 0)       //テーブルが存在するか確認
+                if (connection.GetTableInfo("DBtestDeta ").Count <= 0)       //テーブルが存在するか確認
                 {
                     connection.CreateTable<FlowTable>();
-
 
                     return connection;
                 }
