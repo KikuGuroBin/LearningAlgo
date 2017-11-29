@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)TodoItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TodoRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TypeTable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DBTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml">
