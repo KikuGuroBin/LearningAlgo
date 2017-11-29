@@ -15,6 +15,11 @@ namespace LearningAlgo
 		public Test1 ()
 		{
 			InitializeComponent ();
+            DBTest dbTest = new DBTest();
+            dbTest.DBtest();
+
+
+
 		}
 	}
 }
