@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,30 +13,19 @@ namespace LearningAlgo
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Test1 : ContentPage
     {
+        Dictionary<string , List<string>> DbInsertLint;
+
         public Test1()
         {
             InitializeComponent();
+            //①起動②モード？
 
-            
 
+            //起動時にどうせ使う第壱テーブルを読み込む
+            DbInsertLint = new PresetLoadClass().PresetLoad(DbInsertLint);
 
-            // プログラムでのレイアウト追加方法
-            Label TestNo1Label = new Label
-            {
-                Text = "3＋12×4－6÷2→i"
-            };
-            Label TestNo2Label = new Label
-            {
-                Text = "i＋1→i"
-            };
-            Label TestNo3Label = new Label
-            {
-                Text = "i出力"
-            };
+            //選択ボタン押された後使う第弐テーブルを読み込む用
 
-            MainLayout.Children.Add(TestNo1Label);
-            MainLayout.Children.Add(TestNo2Label);
-            MainLayout.Children.Add(TestNo3Label);
 
 
             // DBにする配列達
@@ -52,12 +42,9 @@ namespace LearningAlgo
             /*
              * □*/
              Shiki = "1＋i＋3×j＋i→i";
-
-             SquareCalculatClass squareCalculat =new SquareCalculatClass();
-             VarManegement = squareCalculat.SquareCalculate(VarManegement,Shiki);
+            
+             VarManegement = new CalculateClass().SquareCalculate(VarManegement, Shiki);
              System.Diagnostics.Debug.WriteLine("ここ一番で決める:"+VarManegement["i"].ToString());
-
-
 
             /*
              * ♢*/
@@ -65,18 +52,11 @@ namespace LearningAlgo
             VarManegement["i"] = 3;
 
             //Symbolは0がNo、1がYes、：が判定
-            DiamondCalculatClass diamondCalculat = new DiamondCalculatClass();
-            (string Symbol,int b,int c) Kekka = diamondCalculat.DiamondCalculat(VarManegement, Shiki);
-            
+            (string Symbol,int b,int c) Kekka = new CalculateClass().DiamondCalculat(VarManegement, Shiki);
 
-            /*
-             * 台形
-            Shiki = "1＋i＋3×j＋i≧3＋4";
 
-            //Symbolは0がNo、1がYes、：が判定
-            DiamondCalculatClass diamondCalculat = new DiamondCalculatClass();
-            bool Kekka = diamondCalculat.DiamondCalculat(VarManegement, Shiki);
-            */
+            //台形Symbolは0がNo、1がYes、：が判定
+            bool Kekka2 = new CalculateClass().TrapezoidCalculat(VarManegement, Shiki);
 
 
         }
