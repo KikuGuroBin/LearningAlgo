@@ -10,12 +10,14 @@ namespace LearningAlgo
     public class ImitationDialog
     {
         /// <summary>
-        /// ダイアログ表示時の影の部分
+        /// ダイアログ表示時の影の部分。
+        /// ダイアログを呼び出す側で定義して、初期化式等でセットする必要がある
         /// </summary>
         public BoxView Shadow { get; set; }
 
         /// <summary>
-        /// ダイアログ本体
+        /// ダイアログ本体。
+        /// ダイアログを呼び出す側で定義して、初期化式等でセットする必要がある
         /// </summary>
         public RelativeLayout Dialog { get; set; }
 
