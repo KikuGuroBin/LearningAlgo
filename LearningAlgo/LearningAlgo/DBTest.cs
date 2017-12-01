@@ -11,6 +11,7 @@ namespace LearningAlgo
 {
     public class DBTest
     {
+
         public void DBtest()
         {
             OnAppearing();
@@ -21,7 +22,7 @@ namespace LearningAlgo
             using (var connection = await CreateConnection())
             // DBへのコネクションを取得してくるConnection())
             {
-              //テストデータ
+                //テストデータ
 
                 //flowデータ
                 connection.Insert(new FlowTable { flow_id = "1", flow_name = "1", comment = "test" });
@@ -35,16 +36,16 @@ namespace LearningAlgo
                 connection.Insert(new FlowPartsTable { flow_id = "1", identification_id = "6", type_id = "6", data = "j出力", position = "10,230", startFlag = "0" });
 
                 //outputデータ
-                connection.Insert(new OutputTable { flow_id = "1", identification_id = "1", output_identification_id = "2"});
-                connection.Insert(new OutputTable { flow_id = "1", identification_id = "2", output_identification_id = "3"});
-                connection.Insert(new OutputTable { flow_id = "1", identification_id = "3", output_identification_id = "4"});
-                connection.Insert(new OutputTable { flow_id = "1", identification_id = "4", output_identification_id = "5"});
-                connection.Insert(new OutputTable { flow_id = "1", identification_id = "5", output_identification_id = "3"});
-                connection.Insert(new OutputTable { flow_id = "1", identification_id = "5", output_identification_id = "6"});
-                connection.Insert(new OutputTable { flow_id = "1", identification_id = "6", output_identification_id = "-1"});
+                connection.Insert(new OutputTable { flow_id = "1", identification_id = "1", output_identification_id = "2" });
+                connection.Insert(new OutputTable { flow_id = "1", identification_id = "2", output_identification_id = "3" });
+                connection.Insert(new OutputTable { flow_id = "1", identification_id = "3", output_identification_id = "4" });
+                connection.Insert(new OutputTable { flow_id = "1", identification_id = "4", output_identification_id = "5" });
+                connection.Insert(new OutputTable { flow_id = "1", identification_id = "5", output_identification_id = "3" });
+                connection.Insert(new OutputTable { flow_id = "1", identification_id = "5", output_identification_id = "6" });
+                connection.Insert(new OutputTable { flow_id = "1", identification_id = "6", output_identification_id = "-1" });
 
                 //typeデータ
-                connection.Insert(new TypeTable { type_id = "1", type_name = "1",output = "1"});
+                connection.Insert(new TypeTable { type_id = "1", type_name = "1", output = "1" });
                 connection.Insert(new TypeTable { type_id = "2", type_name = "2", output = "2" });
                 connection.Insert(new TypeTable { type_id = "3", type_name = "3", output = "1" });
                 connection.Insert(new TypeTable { type_id = "4", type_name = "4", output = "1" });
@@ -67,13 +68,14 @@ namespace LearningAlgo
                 {
                     System.Diagnostics.Debug.WriteLine("flowTable" + items.flow_id + items.identification_id + items.output_identification_id);
                 }
+                connection.Close();
             }
         }
 
 
-        private async Task<SQLiteConnection> CreateConnection()
+        public static async Task<SQLiteConnection> CreateConnection()
         {
-            //
+
             const string DatabasesFileName = "DB_TestFile.db3";
             //ルートフォルダの取得を行う
             IFolder rootFolder = FileSystem.Current.LocalStorage;
@@ -114,5 +116,53 @@ namespace LearningAlgo
 
             }
         }
+
     }
+
+    //public class GetConnection
+    //{
+    //    public void Connection()
+    //    {
+    //        static var connection;
+
+    //        const string DatabasesFileName = "DB_TestFile.db3";
+    //        //ルートフォルダの取得を行う
+    //        IFolder rootFolder = FileSystem.Current.LocalStorage;
+    //        //DBファイルの存在をチェックする
+    //        var result = rootFolder.CheckExistsAsync(DatabasesFileName);
+    //        if (result == ExistenceCheckResult.NotFound)
+    //        {
+    //            //存在しなかった場合に限り、新たにファイル作成とテーブル作成を新規に行う
+    //            IFile file = rootFolder.CreateFileAsync(DatabasesFileName, CreationCollisionOption.ReplaceExisting);
+    //            connection = new SQLiteConnection(file.Path);
+
+    //            connection.CreateTable<FlowTable>();
+    //            connection.CreateTable<FlowPartsTable>();
+    //            connection.CreateTable<OutputTable>();
+    //            connection.CreateTable<TypeTable>();
+
+    //            return connection;
+    //        }
+    //        else
+    //        {
+    //            //ファイルが存在する場合はそのままコネクションの作成を行う
+    //            IFile file = rootFolder.CreateFileAsync(DatabasesFileName, CreationCollisionOption.OpenIfExists);
+    //            connection = new SQLiteConnection(file.Path);
+    //            if (connection.GetTableInfo("DBtestDeta ").Count <= 0)       //テーブルが存在するか確認
+    //            {
+    //                connection.CreateTable<FlowTable>();
+    //                connection.CreateTable<FlowPartsTable>();
+    //                connection.CreateTable<OutputTable>();
+    //                connection.CreateTable<TypeTable>();
+
+    //                return connection;
+    //            }
+    //            else
+    //            {
+    //                return connection;
+    //            }
+    //        }
+
+    //    }
+    //}    
 }
