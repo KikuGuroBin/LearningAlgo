@@ -19,7 +19,7 @@ namespace LearningAlgo
         /// ダイアログ本体。
         /// ダイアログを呼び出す側で定義して、初期化式等でセットする必要がある
         /// </summary>
-        public RelativeLayout Dialog { get; set; }
+        public ContentView Dialog { get; set; }
 
         /// <summary>
         /// ダイアログ表示アニメーションの座標軸
