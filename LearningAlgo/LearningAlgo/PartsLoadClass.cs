@@ -7,54 +7,57 @@ using System.Threading.Tasks;
 
 namespace LearningAlgo
 {
-
-    public class PresetLoadClass
+    public class PartsLoadClass
     {
-        /// <summary>
-        /// プリセットテーブルの格納
-        /// </summary>
-        private Dictionary<string, Flowtable> PreTb;
+
+        Dictionary<string, List<string>> PartsTb;
+
+        public PartsLoadClass()
+        {
+            OnAppearing();
+        }
 
 
-        public PresetLoadClass()
+        public Dictionary<string, List<string>> PartsLoad()
         {
 
-            OnAppearing();
+            return PartsTb;
+
 
         }
-
-        public  Dictionary<string, Flowtable> PresetLoad()
-{ 
-                
-               return PreTb;
-            
-        }
-
         public async void OnAppearing()
         {
             using (var connection = await CreateConnection())
             // DBへのコネクションを取得してくるConnection())
             {
-                /**/
-                //var preset =  connection.Table<FlowTable>();
-                
-                var a = from b in connection.Table<FlowTable>()
-                        select b;
 
-
-
-                foreach (var preset in connection.Table<FlowTable>())
+                foreach (var selectItem in (from x in connection.Table<FlowTable>() orderby x.flow_id select x))
                 {
-                    PreTb[preset.flow_id] = new Flowtable
+
+                    while (true)//部品テーブル数回すを格納します
                     {
-                        id = preset.flow_id,
-                        name = preset.flow_name,
-                        comment = preset.comment,
-                    };
+                        List<string> PartsContent = new List<string>();
+                        while (true)//テーブルの中身をPartsContent.Add(string型)で追加
+                        {
+                            //try,catch使えってもつかわなくてもいいけど終ったらブレイク
+                            try
+                            {
+                            }
+                            catch (Exception e)
+                            {
+                                break;
+                            }
+                        }
+                        PartsTb[""] = PartsContent;
+
+                    }
+                    
+                    System.Diagnostics.Debug.WriteLine("flowTable" + selectItem.flow_id + selectItem.flow_name + selectItem.comment);
                 }
+
                 connection.Close();
+
             }
-            
         }
 
 
@@ -108,18 +111,3 @@ namespace LearningAlgo
 
     }
 }
-/*
- foreach (var items in (from x in connection.Table<TypeTable>() orderby x.type_id select x))
-                {
-                    System.Diagnostics.Debug.WriteLine("flowTable" + items.type_id + items.type_id + items.output);
-                }
-                foreach (var items in (from x in connection.Table<FlowPartsTable>() orderby x.flow_id select x))
-                {
-                    System.Diagnostics.Debug.WriteLine("flowTable" + items.flow_id + items.identification_id + items.type_id + items.data + items.position + items.startFlag);
-                }
-                foreach (var items in (from x in connection.Table<OutputTable>() orderby x.flow_id select x))
-                {
-                    System.Diagnostics.Debug.WriteLine("flowTable" + items.flow_id + items.identification_id + items.output_identification_id);
-                }
-     
- */

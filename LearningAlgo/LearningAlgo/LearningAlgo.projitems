@@ -13,19 +13,16 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CalculateClass.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DBadd.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)FlowPartsTable.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)FlowTable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DBTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ISQLite.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)OutputTable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PartsLoadClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PresetLoadClass.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TableClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Test1.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)TodoItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TodoRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TypeTable.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DBTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml">
