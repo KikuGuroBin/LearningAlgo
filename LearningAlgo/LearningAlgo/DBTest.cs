@@ -22,8 +22,7 @@ namespace LearningAlgo
             using (var connection = await CreateConnection())
             // DBへのコネクションを取得してくるConnection())
             {
-                //テストデータ
-
+            //テストデータ
                 //flowデータ
                 connection.Insert(new FlowTable { flow_id = "1", flow_name = "1", comment = "test" });
 
@@ -54,19 +53,19 @@ namespace LearningAlgo
 
                 foreach (var items in (from x in connection.Table<FlowTable>() orderby x.flow_id select x))
                 {
-                    System.Diagnostics.Debug.WriteLine("flowTable" + items.flow_id + items.flow_name + items.comment);
+                    System.Diagnostics.Debug.WriteLine("flowTable" + " " + items.flow_id + " " + items.flow_name + " " + items.comment);
                 }
                 foreach (var items in (from x in connection.Table<TypeTable>() orderby x.type_id select x))
                 {
-                    System.Diagnostics.Debug.WriteLine("flowTable" + items.type_id + items.type_id + items.output);
+                    System.Diagnostics.Debug.WriteLine("flowTable" + " " + items.type_id + " " + items.type_id + " " + items.output);
                 }
                 foreach (var items in (from x in connection.Table<FlowPartsTable>() orderby x.flow_id select x))
                 {
-                    System.Diagnostics.Debug.WriteLine("flowTable" + items.flow_id + items.identification_id + items.type_id + items.data + items.position + items.startFlag);
+                    System.Diagnostics.Debug.WriteLine("flowTable" + " " + items.flow_id + " " + items.identification_id + " " + items.type_id + " " + items.data + " " + items.position + " " + items.startFlag);
                 }
                 foreach (var items in (from x in connection.Table<OutputTable>() orderby x.flow_id select x))
                 {
-                    System.Diagnostics.Debug.WriteLine("flowTable" + items.flow_id + items.identification_id + items.output_identification_id);
+                    System.Diagnostics.Debug.WriteLine("flowTable" + " " + items.flow_id + " " + items.identification_id + " " + items.output_identification_id);
                 }
                 connection.Close();
             }

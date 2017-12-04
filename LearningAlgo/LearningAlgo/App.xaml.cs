@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Xamarin.Forms;
 
 namespace LearningAlgo
@@ -13,7 +12,7 @@ namespace LearningAlgo
 		{
 			InitializeComponent();
 
-			MainPage = new LearningAlgo.MainPage();
+            MainPage = new NavigationPage(new LearningAlgo.MainPage());
 		}
 
 		protected override void OnStart ()
