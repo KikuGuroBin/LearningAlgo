@@ -9,37 +9,30 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Diagnostics;
+using System.Threading;
 
 namespace LearningAlgo
 {
-    public class Flowtable
-    {
-        public string id { get; set; }
-        public string name { get; set; }
-        public string comment { get; set; }
-    }
-
-
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Test1 : ContentPage
     {
-        //プリセットテーブル　<プリID、各テーブルの中身(日にちとかプリIDとか)>
+        /*プリセットテーブル　<プリID、各テーブルの中身(日にちとかプリIDとか)>*/
         Dictionary<string, Flowtable> DbInsertListTTb1 = new Dictionary<string, Flowtable>();
-        //各プリセットの中身用テーブル<パーツID,各テーブルの中身(パーツIDとか式とか)>
+        /*各プリセットの中身用テーブル<パーツID,各テーブルの中身(パーツIDとか式とか)>*/
         Dictionary<string, List<string>> DbInsertListTb2 = new Dictionary<string, List<string>>();//<プリ>
 
 
         public Test1()
         {
             InitializeComponent();
-            //テストデータ用コネクション
+            /*テストデータ用コネクション*/
             new DBTest().DBtest();
 
+            /*プリセットをロードするメソッド*/
+            PresetLoad();
 
-            //起動時にどうせ使う第壱テーブルを読み込む用コネクション
-            DbInsertListTTb1 = new PresetLoadClass().PresetLoad();
-            Debug.WriteLine(DbInsertListTTb1);
-
+            /*1が選択されたと仮定する*/
+            PartsLoad("1");
 
 
 
@@ -93,6 +86,24 @@ namespace LearningAlgo
             //台形Symbolは0がNo、1がYes、：が判定
             /// bool Kekka2 = new CalculateClass().TrapezoidCalculat(VarManegement, Shiki);
 
+
+        }
+        public async void PresetLoad()
+        {
+
+            //起動時にどうせ使う第壱テーブルを読み込む用コネクション
+            PresetLoadClass PreClass = new PresetLoadClass();
+            DbInsertListTTb1 = await PreClass.OnAppearing();
+            Debug.WriteLine(DbInsertListTTb1 + "aaaaaaaaaaaaaa");
+
+        }
+        public async void PartsLoad(string Tb1Id)
+        {
+
+            //第弐テーブルを読み込む用コネクション
+            PatrsLoadClass ParClass = new PartsLoadClass();
+            DbInsertListTTb1 = await ParClass.OnAppearing();
+            Debug.WriteLine(DbInsertListTTb2 + "aaaaaaaaaaaaaa");
 
         }
     }

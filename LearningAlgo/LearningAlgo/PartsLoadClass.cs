@@ -7,57 +7,38 @@ using System.Threading.Tasks;
 
 namespace LearningAlgo
 {
+
+
     public class PartsLoadClass
     {
+        /// <summary>
+        /// パーツテーブルの格納
+        /// </summary>
+        public Dictionary<string, List<string>> ParTb;
 
-        Dictionary<string, List<string>> PartsTb;
-
-        public PartsLoadClass()
-        {
-            OnAppearing();
-        }
-
-
-        public Dictionary<string, List<string>> PartsLoad()
-        {
-
-            return PartsTb;
-
-
-        }
-        public async void OnAppearing()
+        public async Task<Dictionary<string, List<string>>> OnAppearing()
         {
             using (var connection = await CreateConnection())
             // DBへのコネクションを取得してくるConnection())
             {
+                var a = from b in connection.Table<FlowPartsTable>()
+                        select b;
+                ParTb = new Dictionary<string, List<string>>();
 
-                foreach (var selectItem in (from x in connection.Table<FlowTable>() orderby x.flow_id select x))
+                foreach (var preset in connection.Table<FlowTable>())
                 {
-
-                    while (true)//部品テーブル数回すを格納します
+                   /* PreTb[preset.flow_id] = new Flowtable
                     {
-                        List<string> PartsContent = new List<string>();
-                        while (true)//テーブルの中身をPartsContent.Add(string型)で追加
-                        {
-                            //try,catch使えってもつかわなくてもいいけど終ったらブレイク
-                            try
-                            {
-                            }
-                            catch (Exception e)
-                            {
-                                break;
-                            }
-                        }
-                        PartsTb[""] = PartsContent;
-
-                    }
-                    
-                    System.Diagnostics.Debug.WriteLine("flowTable" + selectItem.flow_id + selectItem.flow_name + selectItem.comment);
+                        id = preset.flow_id,
+                        name = preset.flow_name,
+                        comment = preset.comment
+                    };*/
                 }
-
+               // System.Diagnostics.Debug.WriteLine(PreTb);
                 connection.Close();
 
             }
+            return ParTb;
         }
 
 

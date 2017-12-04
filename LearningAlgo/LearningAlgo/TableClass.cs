@@ -13,6 +13,15 @@ namespace LearningAlgo
         public string comment { get; set; }
     }
 
+    public class Flowtable
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+        public string comment { get; set; }
+    }
+
+
+
     //プリセットの中身
     public class FlowPartsTable
     {

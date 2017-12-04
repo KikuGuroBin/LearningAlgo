@@ -13,24 +13,9 @@ namespace LearningAlgo
         /// <summary>
         /// プリセットテーブルの格納
         /// </summary>
-        private Dictionary<string, Flowtable> PreTb;
+        public Dictionary<string, Flowtable> PreTb;
 
-
-        public PresetLoadClass()
-        {
-
-            OnAppearing();
-
-        }
-
-        public  Dictionary<string, Flowtable> PresetLoad()
-{ 
-                
-               return PreTb;
-            
-        }
-
-        public async void OnAppearing()
+        public async Task<Dictionary<string, Flowtable>> OnAppearing()
         {
             using (var connection = await CreateConnection())
             // DBへのコネクションを取得してくるConnection())
@@ -40,7 +25,7 @@ namespace LearningAlgo
                 
                 var a = from b in connection.Table<FlowTable>()
                         select b;
-
+                PreTb = new Dictionary<string, Flowtable>();
 
 
                 foreach (var preset in connection.Table<FlowTable>())
@@ -49,18 +34,14 @@ namespace LearningAlgo
                     {
                         id = preset.flow_id,
                         name = preset.flow_name,
-                        comment = preset.comment,
+                        comment = preset.comment
                     };
                 }
+                System.Diagnostics.Debug.WriteLine(PreTb);
                 connection.Close();
             }
-            
+            return PreTb;
         }
-
-
-
-
-
         public async Task<SQLiteConnection> CreateConnection()
         {
             //
