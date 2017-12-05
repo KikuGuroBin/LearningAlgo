@@ -12,7 +12,7 @@ namespace LearningAlgo
         Stack<string> SymbolStack = new Stack<string>();
         string RightArithExpression;
         string LeftArithExpression;
-        string judgeSymbol;
+        string JudgeSymbol;
 
 
         public (string, int, int) DiamondCalculat(Dictionary<string, int> VarManagement, string ArithExpression)
@@ -33,7 +33,7 @@ namespace LearningAlgo
                         stackText[lengthcount].ToString() == "＝" ||
                         stackText[lengthcount].ToString() == "≠")
                     {
-                        judgeSymbol = stackText[lengthcount].ToString();
+                        JudgeSymbol = stackText[lengthcount].ToString();
                         rorl = 1;
                     }
                     else
@@ -59,86 +59,80 @@ namespace LearningAlgo
 
 
 
-            if (judgeSymbol == "：")
+            if (JudgeSymbol == "：")
             {
-                return (judgeSymbol, int.Parse(before), int.Parse(after));
+                return (JudgeSymbol, int.Parse(before), int.Parse(after));
             }
             else
             {
-                return (JudgeTorF(int.Parse(before), int.Parse(after), judgeSymbol));
+                return (JudgeTorF(int.Parse(before), int.Parse(after), JudgeSymbol));
             }
             return ("", 0, 0);
         }
 
-        private (string, int, int) JudgeTorF(int before, int after, string judgeSymbol)
+        private (string, int, int) JudgeTorF(int before, int after, string JudgeSymbol)
         {
-            if (judgeSymbol == "＞")
+            if (JudgeSymbol == "＞")
             {
                 if (before > after)
                 {
-                    return ("1", before, after);
+                    return ("0", before, after);
                 }
             }
-            else if (judgeSymbol == "＜")
+            else if (JudgeSymbol == "＜")
             {
                 if (before < after)
                 {
 
-                    return ("1", before, after);
+                    return ("0", before, after);
                 }
 
             }
-            else if (judgeSymbol == "≧")
+            else if (JudgeSymbol == "≧")
             {
                 if (before >= after)
                 {
-                    return ("1", before, after);
+                    return ("0", before, after);
                 }
             }
-            else if (judgeSymbol == "≦")
+            else if (JudgeSymbol == "≦")
             {
                 if (before <= after)
                 {
-                    return ("1", before, after);
+                    return ("0", before, after);
                 }
             }
-            else if (judgeSymbol == "＝")
+            else if (JudgeSymbol == "＝")
             {
                 if (before == after)
                 {
-                    return ("1", before, after);
+                    return ("0", before, after);
                 }
             }
-            else if (judgeSymbol == "≠")
+            else if (JudgeSymbol == "≠")
             {
                 if (before != after)
                 {
-                    return ("1", before, after);
+                    return ("0", before, after);
                 }
             }
             else
             {
-                return ("0", before, after);
+                return ("-1", before, after);
             }
 
 
-            return ("0", before, after);
+            return ("-1", before, after);
 
         }
 
         public string DiamondSeparateCalculate(Dictionary<string, int> VarManagement, string ArithExpression)
         {
-
-            // 必要な工程   形種類の判定
-
-
-            // 判定後”□”の場合
+           
             char[] StackText = ArithExpression.ToCharArray();
 
             System.Diagnostics.Debug.WriteLine(ArithExpression);
-
-
-
+           
             System.Diagnostics.Debug.WriteLine(StackText.Length);
             //与えられた文字列を一文字ずつ分解したから初めから数字と記号でスタックしてく(×÷は計算する)　→　が来たらブレイク
             for (int Tenmade = 0, length = 0, Calculat = 0, Popcount = 0; length < StackText.Length; length++)
@@ -257,7 +251,7 @@ namespace LearningAlgo
                         stackText[lengthcount].ToString() == "＝" ||
                         stackText[lengthcount].ToString() == "≠")
                     {
-                        judgeSymbol = stackText[lengthcount].ToString();
+                        JudgeSymbol = stackText[lengthcount].ToString();
                         rorl = 1;
                     }
                     else
@@ -281,20 +275,20 @@ namespace LearningAlgo
             System.Diagnostics.Debug.WriteLine("後半：" + after);
 
 
-            return (JudgeTorF2(int.Parse(before), int.Parse(after), judgeSymbol));
+            return (JudgeTorF2(int.Parse(before), int.Parse(after), JudgeSymbol));
 
         }
 
-        private bool JudgeTorF2(int before, int after, string judgeSymbol)
+        private bool JudgeTorF2(int before, int after, string JudgeSymbol)
         {
-            if (judgeSymbol == "＞")
+            if (JudgeSymbol == "＞")
             {
                 if (before > after)
                 {
                     return true;
                 }
             }
-            else if (judgeSymbol == "＜")
+            else if (JudgeSymbol == "＜")
             {
                 if (before < after)
                 {
@@ -303,28 +297,28 @@ namespace LearningAlgo
                 }
 
             }
-            else if (judgeSymbol == "≧")
+            else if (JudgeSymbol == "≧")
             {
                 if (before >= after)
                 {
                     return true;
                 }
             }
-            else if (judgeSymbol == "≦")
+            else if (JudgeSymbol == "≦")
             {
                 if (before <= after)
                 {
                     return true;
                 }
             }
-            else if (judgeSymbol == "＝")
+            else if (JudgeSymbol == "＝")
             {
                 if (before == after)
                 {
                     return true;
                 }
             }
-            else if (judgeSymbol == "≠")
+            else if (JudgeSymbol == "≠")
             {
                 if (before != after)
                 {
@@ -469,20 +463,7 @@ namespace LearningAlgo
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+       
 
         public void CalculationMethod()
         {

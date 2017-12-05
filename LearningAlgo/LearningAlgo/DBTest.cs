@@ -45,12 +45,7 @@ namespace LearningAlgo
                 connection.Insert(new OutputTable { flow_id = "1", identification_id = "5", output_identification_id = "6" });
                 connection.Insert(new OutputTable { flow_id = "1", identification_id = "6", output_identification_id = "-1" });
 
-                //typeデータ
-                connection.Insert(new TypeTable { type_id = "1", type_name = "1", output = "1" });
-                connection.Insert(new TypeTable { type_id = "2", type_name = "2", output = "2" });
-                connection.Insert(new TypeTable { type_id = "3", type_name = "3", output = "1" });
-                connection.Insert(new TypeTable { type_id = "4", type_name = "4", output = "1" });
-                connection.Insert(new TypeTable { type_id = "5", type_name = "5", output = "1" });
+
                 
             }
         }
@@ -73,7 +68,6 @@ namespace LearningAlgo
                 connection.CreateTable<FlowTable>();
                 connection.CreateTable<FlowPartsTable>();
                 connection.CreateTable<OutputTable>();
-                connection.CreateTable<TypeTable>();
 
                 return connection;
             }
@@ -87,7 +81,6 @@ namespace LearningAlgo
                     connection.CreateTable<FlowTable>();
                     connection.CreateTable<FlowPartsTable>();
                     connection.CreateTable<OutputTable>();
-                    connection.CreateTable<TypeTable>();
 
                     return connection;
                 }

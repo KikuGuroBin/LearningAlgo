@@ -16,10 +16,25 @@ namespace LearningAlgo
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Test1 : ContentPage
     {
-        /*プリセットテーブル　<プリID、各テーブルの中身(日にちとかプリIDとか)>*/
-        Dictionary<string, Flowtable> DbInsertListTTb1 = new Dictionary<string, Flowtable>();
-        /*各プリセットの中身用テーブル<パーツID,各テーブルの中身(パーツIDとか式とか)>*/
-        Dictionary<string, List<string>> DbInsertListTb2 = new Dictionary<string, List<string>>();//<プリ>
+        /// <summary>
+        /// プリセットテーブル　プリID、各テーブルの中身(日にちとかプリIDとか)
+        /// </summary>
+        Dictionary<string, Flowtable> DbInsertListTb1 = new Dictionary<string, Flowtable>();
+        /// <summary>
+        /// 各プリセットの中身用テーブルパーツID,各テーブルの中身(パーツIDとか式とか)
+        /// </summary>
+        Dictionary<string, FlowPartstable> DbInsertListTb2 = new Dictionary<string, FlowPartstable>();
+        /// <summary>
+        /// 各パーツの中身用テーブルパーツID,各テーブルの中身(パーツIDとか出力先)
+        /// </summary>
+        Dictionary<(string, string), Outputtable> DbInsertListTb3 = new Dictionary<(string,string), Outputtable>();
+        /// <summary>
+        /// iとかjとか
+        /// </summary>
+        Dictionary<string, int> VarManegement = new Dictionary<string, int>();
+
+
+
 
 
         public Test1()
@@ -28,11 +43,14 @@ namespace LearningAlgo
             /*テストデータ用コネクション*/
             new DBTest().DBtest();
 
-            /*プリセットをロードするメソッド*/
+            /*プリセット一覧をロードするメソッド*/
             PresetLoad();
+            /*プリセットをセットするメソッド1が選択されたと仮定する*/
+            PresetSet("1");
 
-            /*1が選択されたと仮定する*/
-            PartsLoad("1");
+            /*トレース実際にやってみた*/
+            TracePreviewer();
+
 
 
 
@@ -62,49 +80,116 @@ namespace LearningAlgo
             string[] FlowTable = new string[3];
             string[] PrintTable = new string[4];
             string[] KindTable = new string[3];
+            
 
-            // 変数を格納したDBからDictionaryにぶち込む 変数と値
-            Dictionary<string, int> VarManegement = new Dictionary<string, int>();
-            string Shiki;
+           
 
-            /*
-             * □*/
-            Shiki = "1＋i＋3×j＋i→i";
+        }
+        public async void PresetLoad()
+        {
+            /*起動時にどうせ使う第壱テーブルを読み込む用コネクション*/
+            PresetLoadClass PreClass = new PresetLoadClass();
+            DbInsertListTb1 = await PreClass.OnAppearing();
 
-            // VarManegement = new CalculateClass().SquareCalculate(VarManegement, Shiki);
-            // System.Diagnostics.Debug.WriteLine("ここ一番で決める:"+VarManegement["i"].ToString());
+        }
+        public async void PresetSet(string Tb1Id)
+        {
+            /*選択後第弐テーブルを読み込んで配置する*/
+            PartsLoadClass ParClass = new PartsLoadClass();
+            (DbInsertListTb2,DbInsertListTb3) = await ParClass.OnAppearing(Tb1Id);
+        }
+        public void TracePreviewer()
+        {
+            /*スタートフラグを探す*/
+            var StartPossition = from x in DbInsertListTb2
+                    where x.Value.identification_id == "-1"
+                    select x.Key;
 
-            /*
-             * ♢*/
-            Shiki = "1＋i＋3×j＋i≧3＋4";
-            VarManegement["i"] = 3;
+           
+            string NextId = TypeCalculate(DbInsertListTb2[StartPossition.ToString()]);
+            
+            /*トレース始めます*/
+            for(; ; )
+            {
+                NextId = TypeCalculate(DbInsertListTb2[NextId]);
 
-            //Symbolは0がNo、1がYes、：が判定
-            /// (string Symbol,int b,int c) Kekka = new CalculateClass().DiamondCalculat(VarManegement, Shiki);
+
+
+
+                if (NextId == "-1")
+                {
+                    break;
+                }
+            }
+
+
+        }
+        public string TypeCalculate(FlowPartstable PartsTb ,Outputtable OutTb)
+        {
+
+            if (PartsTb.type_id == "1")
+            {
+                VarManegement = new CalculateClass().SquareCalculate(VarManegement, PartsTb.data);
+                System.Diagnostics.Debug.WriteLine("ここ一番で決める:" + VarManegement["i"].ToString());
+                return DbInsertListTb3[(PartsTb.identification_id,Out.)].output_identification_id;
+            }
+            else if (PartsTb.type_id == "2")
+            {
+                
+                (string Symbol, int b, int c) JudgAnsower = new CalculateClass().DiamondCalculat(VarManegement, PartsTb.data);
+                string Symbol = JudgAnsower.Symbol;
+                int before = JudgAnsower.b;
+                int after = JudgAnsower.c;
+                if (Symbol==":")
+                {
+
+                }
+                else if(Symbol=="-1")
+                {
+                    var a = from x in DbInsertListTb2
+                                         where x.Value.identification_id == "-1"
+                                         select x.Key;
+                    
+                    return DbInsertListTb3[PartsTb.identification_id].output_identification_id;
+                }
+                else if (Symbol=="0")
+                {
+
+                }
+
+            }
+            else if (PartsTb.type_id == "3")
+            {
+
+            }
+            else if (PartsTb.type_id == "4")
+            {
+
+            }
+            else if (PartsTb.type_id == "5")
+            {
+
+            }
+
+           
+
+            //Symbolは-1がNo、0がYes、：が判定
+            /// 
 
 
             //台形Symbolは0がNo、1がYes、：が判定
             /// bool Kekka2 = new CalculateClass().TrapezoidCalculat(VarManegement, Shiki);
 
 
+
+
+
+
+
+
+
+            return NextId;
         }
-        public async void PresetLoad()
-        {
 
-            //起動時にどうせ使う第壱テーブルを読み込む用コネクション
-            PresetLoadClass PreClass = new PresetLoadClass();
-            DbInsertListTTb1 = await PreClass.OnAppearing();
-            Debug.WriteLine(DbInsertListTTb1 + "aaaaaaaaaaaaaa");
-
-        }
-        public async void PartsLoad(string Tb1Id)
-        {
-
-            //第弐テーブルを読み込む用コネクション
-            PatrsLoadClass ParClass = new PartsLoadClass();
-            DbInsertListTTb1 = await ParClass.OnAppearing();
-            Debug.WriteLine(DbInsertListTTb2 + "aaaaaaaaaaaaaa");
-
-        }
     }
 }

@@ -22,18 +22,14 @@ namespace LearningAlgo
             {
                 /**/
                 //var preset =  connection.Table<FlowTable>();
-                
-                var a = from b in connection.Table<FlowTable>()
-                        select b;
                 PreTb = new Dictionary<string, Flowtable>();
-
 
                 foreach (var preset in connection.Table<FlowTable>())
                 {
                     PreTb[preset.flow_id] = new Flowtable
                     {
-                        id = preset.flow_id,
-                        name = preset.flow_name,
+                        flow_id = preset.flow_id,
+                        flow_name = preset.flow_name,
                         comment = preset.comment
                     };
                 }
@@ -59,7 +55,6 @@ namespace LearningAlgo
                 connection.CreateTable<FlowTable>();
                 connection.CreateTable<FlowPartsTable>();
                 connection.CreateTable<OutputTable>();
-                connection.CreateTable<TypeTable>();
 
                 return connection;
             }
@@ -73,7 +68,6 @@ namespace LearningAlgo
                     connection.CreateTable<FlowTable>();
                     connection.CreateTable<FlowPartsTable>();
                     connection.CreateTable<OutputTable>();
-                    connection.CreateTable<TypeTable>();
 
                     return connection;
                 }
