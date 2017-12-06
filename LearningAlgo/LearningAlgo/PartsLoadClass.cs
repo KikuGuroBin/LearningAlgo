@@ -44,12 +44,6 @@ namespace LearningAlgo
                         position = preset.position,
                         startFlag = preset.startFlag
                     };
-                    System.Diagnostics.Debug.WriteLine(ParTb[preset.identification_id].flow_id + ":" +
-                        ParTb[preset.identification_id].identification_id + ":" +
-                        ParTb[preset.identification_id].type_id + ":" +
-                        ParTb[preset.identification_id].data + ":" +
-                        ParTb[preset.identification_id].position + ":" +
-                        ParTb[preset.identification_id].startFlag + ":");
                 }
 
                 var c = 0;
@@ -62,7 +56,13 @@ namespace LearningAlgo
                 System.Diagnostics.Debug.WriteLine("deg : " + list.Count);
 
                 int i = 0;
-                //出力先テーブル
+                
+
+
+
+                /*出力先テーブル
+                 * 出力先テーブルののみキーは格納準*/
+
                 foreach (var preset in list)
                 {
                     /*preset.identification_id*/
@@ -73,11 +73,7 @@ namespace LearningAlgo
                         blanch_flag=preset.blanch_flag,
                         output_identification_id = preset.output_identification_id
                     };
-                    /*
-                    System.Diagnostics.Debug.WriteLine("deg : " + c++ + ParTb[preset.identification_id].flow_id + ":" +
-                        OutTb[preset.identification_id].identification_id + ":" +
-                        OutTb[preset.identification_id].output_identification_id + ":" );
-                    */
+                    
                     i++;
                 }
 

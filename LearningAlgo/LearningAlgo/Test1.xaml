@@ -5,6 +5,27 @@
              x:Class="LearningAlgo.Test1">
     <ContentPage.Content>
         <StackLayout>
+            <Button x:Name="b1"
+                    Text="プリセット1の呼び出しボタン"
+                    Clicked="b1_Clicked"/>
+
+            <Button x:Name="b2"
+                    Text="トレースの呼び出しボタン"
+                    Clicked="b2_Clicked"/>
+            <StackLayout
+                VerticalOptions="FillAndExpand"
+                >
+                <ScrollView x:Name="PrisetScroll">
+                    <StackLayout  x:Name="Priset"/>
+                </ScrollView>
+                    <Label x:Name="label1"
+                       Text="i:   0"/>
+                <Label x:Name="label2"
+                       Text="j:   0"/>
+                <Label x:Name="label3"
+                       Text="プリセットよめ"/>
+
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

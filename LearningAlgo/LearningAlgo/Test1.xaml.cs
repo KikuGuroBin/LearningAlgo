@@ -51,18 +51,7 @@ namespace LearningAlgo
             /*トレース実際にやってみた
             TracePreviewer();
             */
-
-
-
-            /*
-             * リンクモンスター
-             var a = from b in DbInsertListTTb1
-                    where b.Key=="1"
-                    select b;
-             */
-
-
-
+           
             //DbInsertList_tb1[1]System.out.plintln
 
             //選択ボタン押された後使う第弐テーブルを読み込む用
@@ -77,81 +66,86 @@ namespace LearningAlgo
 
 
             // DBにする配列達
-            string[] FlowTable = new string[3];
-            string[] PrintTable = new string[4];
-            string[] KindTable = new string[3];
-            
 
-           
-
+          
         }
         public async void PresetLoad()
         {
+
+            PrisetScroll.HeightRequest = 50;
+
             /*起動時にどうせ使う第壱テーブルを読み込む用コネクション*/
             PresetLoadClass PreClass = new PresetLoadClass();
             DbInsertListTb1 = await PreClass.OnAppearing();
-            /*プリセットをセットするメソッド1が選択されたと仮定する*/
-            PresetSet("1");
 
+            var a = from x in DbInsertListTb1
+                    select x.Key;
+            List<string> p = a.ToList<string>();
 
+            for (int count = 0;count < p.Count;count++)
+            {
+                Button PriIdLabel = new Button
+                {
+                    Text = p[count]
+                };
+                /*sender eve as*/
+                PriIdLabel.Clicked += (s, e) =>
+                {
+                    var l = s as Button;
+                    var text = l.Text;
+                    Debug.WriteLine("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                    PresetSet(text);
+                };
+                
+                Priset.Children.Add(PriIdLabel);
+            }
         }
+
         public async void PresetSet(string Tb1Id)
         {
             /*選択後第弐テーブルを読み込んで配置する*/
             PartsLoadClass ParClass = new PartsLoadClass();
             (DbInsertListTb2,DbInsertListTb3) = await ParClass.OnAppearing(Tb1Id);
-            Debug.WriteLine("プリセット読み込みメソッド：     " );
 
-
-            /*トレース実際にやってみた*/
-            TracePreviewer();
+            
+            Debug.WriteLine("プリセット読み込みメソッド：" );
         }
+
+
+
         public　async void TracePreviewer()
         {
             /*スタートフラグを探す*/
             var StartPossition = from x in DbInsertListTb2
                                  where x.Value.startFlag == "1"
                                  select x.Value.identification_id;
-
-            try
-            {
-
-                Debug.WriteLine("これってなにはいってるん？：     " + String.Concat(StartPossition));
-            
-            }
-            catch (Exception e)
-            {
-                
-            }
-
-
-           
             string NextId = await TypeCalculate(DbInsertListTb2[String.Concat(StartPossition)]);
-            
             /*トレース始めます*/
             for(; ; )
             {
+                /*計算はほかのメソッドに任せて出力先を返してくる*/
                 NextId = await TypeCalculate(DbInsertListTb2[NextId]);
-
-
-
-
+                /*もし出力先ばなければbreak*/
                 if (NextId == "-1")
                 {
                     break;
                 }
             }
-
-
         }
+
+
+        /*計算本体クラス
+         第二テーブルを受け取って
+         アウトプット番号を返す
+         */
         public async Task<string> TypeCalculate(FlowPartstable PartsTb)
         {
-
+            /*形状四角のばあい*/
             if (PartsTb.type_id == "1")
             {
                 VarManegement = new CalculateClass().SquareCalculate(VarManegement, PartsTb.data);
-                Debug.WriteLine("ここ一番で決める:" + VarManegement["i"].ToString());
 
+                string ax = await IandJ();
 
                 var StartPossition2 = from x in DbInsertListTb3
                                       where x.Value.identification_id == PartsTb.identification_id
@@ -159,14 +153,14 @@ namespace LearningAlgo
 
                 return DbInsertListTb3[StartPossition2.First()].output_identification_id;
             }
+
+            /*形状ひし形のばあい*/
             else if (PartsTb.type_id == "2")
             {
-                
                 (string Symbol, int b, int c) JudgAnsower = new CalculateClass().DiamondCalculat(VarManegement, PartsTb.data);
                 string Symbol = JudgAnsower.Symbol;
                 int before = JudgAnsower.b;
                 int after = JudgAnsower.c;
-
                 Debug.WriteLine("台形返還アイテム： "+ Symbol+ before + after);
                 if (Symbol==":")
                 {
@@ -210,11 +204,64 @@ namespace LearningAlgo
                                    select x.Value.data;
 
                 Debug.WriteLine("最終結果ではなく:  "+  VarManegement[new CalculateClass().ParallelogramOutput(String.Concat(Output))]);
+                label3.Text = "終了"+ String.Concat(Output)+"の解は"+ VarManegement[new CalculateClass().ParallelogramOutput(String.Concat(Output))];
                 return "-1";
+
             }
             return "-1";
           
         }
 
+        public async Task<string> IandJ()
+        {
+            await Task.Run(() =>
+            {
+                try
+                {
+                    Debug.WriteLine("四角で受け取るiの値:" + VarManegement["i"].ToString());
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        label1.Text = "i:   " + VarManegement["i"].ToString();
+                    });
+                    
+                    Thread.Sleep(1000);
+                }
+                catch (Exception e) { }
+                finally { }
+
+                try
+                {
+                    Debug.WriteLine("四角で受け取るiの値:" + VarManegement["j"].ToString());
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        label2.Text = "j:   " + VarManegement["j"].ToString();
+                    });
+
+                    Thread.Sleep(1000);
+                }
+                catch (Exception e) { }
+                finally { }
+            });
+            return "";
+        }
+
+        private void b1_Clicked(object sender, EventArgs e)
+        {
+            /*本来はプリセットが呼ばれた際のメソッド呼び出し
+             * プリセットをセットするメソッド1が選択されたと仮定する*/
+            label3.Text = "開始して";
+            PresetSet("1");
+
+        }
+       
+        private void b2_Clicked(object sender, EventArgs e)
+        {
+            /*本来はトレースボタンが押された際のメソッド呼び出し
+             * トレース実際にやってみた*/
+            label1.Text = "i:   0";
+            label2.Text = "j:   0";
+            label3.Text = "開始";
+            TracePreviewer();
+        }
     }
 }
