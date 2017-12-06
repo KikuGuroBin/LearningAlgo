@@ -8,8 +8,8 @@ namespace LearningAlgo
     {
         public CalculateClass() { }
 
-        Stack<int> NumberStack = new Stack<int>();
-        Stack<string> SymbolStack = new Stack<string>();
+        Stack<int> NumberStack;
+        Stack<string> SymbolStack;
         string RightArithExpression;
         string LeftArithExpression;
         string JudgeSymbol;
@@ -17,6 +17,8 @@ namespace LearningAlgo
 
         public (string, int, int) DiamondCalculat(Dictionary<string, int> VarManagement, string ArithExpression)
         {
+            NumberStack = new Stack<int>();
+            SymbolStack = new Stack<string>();
 
             char[] stackText = ArithExpression.ToCharArray();
 
@@ -128,7 +130,8 @@ namespace LearningAlgo
 
         public string DiamondSeparateCalculate(Dictionary<string, int> VarManagement, string ArithExpression)
         {
-           
+            NumberStack = new Stack<int>();
+            SymbolStack = new Stack<string>();
             char[] StackText = ArithExpression.ToCharArray();
 
             System.Diagnostics.Debug.WriteLine(ArithExpression);
@@ -235,7 +238,8 @@ namespace LearningAlgo
 
         public bool TrapezoidCalculat(Dictionary<string, int> VarManagement, string ArithExpression)
         {
-
+            NumberStack = new Stack<int>();
+            SymbolStack = new Stack<string>();
             char[] stackText = ArithExpression.ToCharArray();
 
             for (int lengthcount = 0, rorl = 0; lengthcount < stackText.Length; lengthcount++)
@@ -347,8 +351,9 @@ namespace LearningAlgo
 
             // 必要な工程   形種類の判定
 
+            NumberStack = new Stack<int>();
+            SymbolStack = new Stack<string>();
 
-            
             char[] StackText = ArithExpression.ToCharArray();
 
             // 最終的な変数　→i　の i的な
@@ -519,6 +524,11 @@ namespace LearningAlgo
 
             }
         }
+        public string ParallelogramOutput(string OutData)
+        {
+            
 
+            return OutData.Substring(0, 1);
+        }
     }
 }

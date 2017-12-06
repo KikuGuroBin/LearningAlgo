@@ -19,15 +19,15 @@ namespace LearningAlgo
         /// <summary>
         /// 出力先の格納
         /// </summary>
-        public Dictionary<(string, string), Outputtable> OutTb;
+        public Dictionary<string, Outputtable> OutTb;
 
-        public async Task<(Dictionary<string, FlowPartstable>, Dictionary<(string, string), Outputtable>)> OnAppearing(string Tb1ID)
+        public async Task<(Dictionary<string, FlowPartstable>, Dictionary<string, Outputtable>)> OnAppearing(string Tb1ID)
         {
             using (var connection = await CreateConnection())
             // DBへのコネクションを取得してくるConnection())
             {
                 ParTb = new Dictionary<string, FlowPartstable>();
-                OutTb = new Dictionary<(string, string), Outputtable>();
+                OutTb = new Dictionary<string, Outputtable>();
 
 
                 /*パーツの中身テーブル*/
@@ -61,20 +61,24 @@ namespace LearningAlgo
 
                 System.Diagnostics.Debug.WriteLine("deg : " + list.Count);
 
+                int i = 0;
                 //出力先テーブル
                 foreach (var preset in list)
                 {
-                    OutTb[(preset.identification_id, preset.blanch_flag)] = new Outputtable
+                    /*preset.identification_id*/
+                    OutTb[i.ToString()] = new Outputtable
                     {
                         flow_id = preset.flow_id,
                         identification_id = preset.identification_id,
                         blanch_flag=preset.blanch_flag,
                         output_identification_id = preset.output_identification_id
                     };
-                    
+                    /*
                     System.Diagnostics.Debug.WriteLine("deg : " + c++ + ParTb[preset.identification_id].flow_id + ":" +
-                        OutTb[(preset.identification_id, preset.blanch_flag)].identification_id + ":" +
-                        OutTb[(preset.identification_id, preset.blanch_flag)].output_identification_id + ":" );
+                        OutTb[preset.identification_id].identification_id + ":" +
+                        OutTb[preset.identification_id].output_identification_id + ":" );
+                    */
+                    i++;
                 }
 
                 connection.Close();

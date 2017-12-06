@@ -27,7 +27,7 @@ namespace LearningAlgo
         /// <summary>
         /// 各パーツの中身用テーブルパーツID,各テーブルの中身(パーツIDとか出力先)
         /// </summary>
-        Dictionary<(string, string), Outputtable> DbInsertListTb3 = new Dictionary<(string,string), Outputtable>();
+        Dictionary<string, Outputtable> DbInsertListTb3 = new Dictionary<string, Outputtable>();
         /// <summary>
         /// iとかjとか
         /// </summary>
@@ -45,12 +45,12 @@ namespace LearningAlgo
 
             /*プリセット一覧をロードするメソッド*/
             PresetLoad();
-            /*プリセットをセットするメソッド1が選択されたと仮定する*/
+            /*プリセットをセットするメソッド1が選択されたと仮定する
             PresetSet("1");
 
-            /*トレース実際にやってみた*/
+            /*トレース実際にやってみた
             TracePreviewer();
-
+            */
 
 
 
@@ -90,6 +90,9 @@ namespace LearningAlgo
             /*起動時にどうせ使う第壱テーブルを読み込む用コネクション*/
             PresetLoadClass PreClass = new PresetLoadClass();
             DbInsertListTb1 = await PreClass.OnAppearing();
+            /*プリセットをセットするメソッド1が選択されたと仮定する*/
+            PresetSet("1");
+
 
         }
         public async void PresetSet(string Tb1Id)
@@ -97,21 +100,38 @@ namespace LearningAlgo
             /*選択後第弐テーブルを読み込んで配置する*/
             PartsLoadClass ParClass = new PartsLoadClass();
             (DbInsertListTb2,DbInsertListTb3) = await ParClass.OnAppearing(Tb1Id);
+            Debug.WriteLine("プリセット読み込みメソッド：     " );
+
+
+            /*トレース実際にやってみた*/
+            TracePreviewer();
         }
-        public void TracePreviewer()
+        public　async void TracePreviewer()
         {
             /*スタートフラグを探す*/
             var StartPossition = from x in DbInsertListTb2
-                    where x.Value.identification_id == "-1"
-                    select x.Key;
+                                 where x.Value.startFlag == "1"
+                                 select x.Value.identification_id;
+
+            try
+            {
+
+                Debug.WriteLine("これってなにはいってるん？：     " + String.Concat(StartPossition));
+            
+            }
+            catch (Exception e)
+            {
+                
+            }
+
 
            
-            string NextId = TypeCalculate(DbInsertListTb2[StartPossition.ToString()]);
+            string NextId = await TypeCalculate(DbInsertListTb2[String.Concat(StartPossition)]);
             
             /*トレース始めます*/
             for(; ; )
             {
-                NextId = TypeCalculate(DbInsertListTb2[NextId]);
+                NextId = await TypeCalculate(DbInsertListTb2[NextId]);
 
 
 
@@ -124,14 +144,20 @@ namespace LearningAlgo
 
 
         }
-        public string TypeCalculate(FlowPartstable PartsTb ,Outputtable OutTb)
+        public async Task<string> TypeCalculate(FlowPartstable PartsTb)
         {
 
             if (PartsTb.type_id == "1")
             {
                 VarManegement = new CalculateClass().SquareCalculate(VarManegement, PartsTb.data);
-                System.Diagnostics.Debug.WriteLine("ここ一番で決める:" + VarManegement["i"].ToString());
-                return DbInsertListTb3[(PartsTb.identification_id,Out.)].output_identification_id;
+                Debug.WriteLine("ここ一番で決める:" + VarManegement["i"].ToString());
+
+
+                var StartPossition2 = from x in DbInsertListTb3
+                                      where x.Value.identification_id == PartsTb.identification_id
+                                      select x.Key;
+
+                return DbInsertListTb3[StartPossition2.First()].output_identification_id;
             }
             else if (PartsTb.type_id == "2")
             {
@@ -140,55 +166,54 @@ namespace LearningAlgo
                 string Symbol = JudgAnsower.Symbol;
                 int before = JudgAnsower.b;
                 int after = JudgAnsower.c;
+
+                Debug.WriteLine("台形返還アイテム： "+ Symbol+ before + after);
                 if (Symbol==":")
                 {
 
                 }
                 else if(Symbol=="-1")
                 {
-                    var a = from x in DbInsertListTb2
-                                         where x.Value.identification_id == "-1"
-                                         select x.Key;
-                    
-                    return DbInsertListTb3[PartsTb.identification_id].output_identification_id;
+                    var NextIdFinder = from x in DbInsertListTb3
+                                         where x.Value.identification_id==PartsTb.identification_id
+                                         && x.Value.blanch_flag == "-1"
+                                         select x.Value.output_identification_id;
+                    Debug.WriteLine("Noだった場合(-1)の時のリターン値：　" + NextIdFinder.First());
+                    return String.Concat(NextIdFinder.First());
                 }
                 else if (Symbol=="0")
                 {
+                    var NextIdFinder = from x in DbInsertListTb3
+                                       where x.Value.identification_id == PartsTb.identification_id
+                                         && x.Value.blanch_flag == "0"
+                                       select x.Value.output_identification_id;
+
+                    Debug.WriteLine("Yesだった場合(0)の時のリターン値：　" + NextIdFinder.First());
+                    return String.Concat(NextIdFinder.First());
 
                 }
 
             }
             else if (PartsTb.type_id == "3")
             {
-
             }
             else if (PartsTb.type_id == "4")
             {
-
             }
             else if (PartsTb.type_id == "5")
             {
+                var NextIdFinder = from x in DbInsertListTb3
+                                   where x.Value.identification_id == PartsTb.identification_id
+                                   select x.Value.output_identification_id;
+                var Output = from x in DbInsertListTb2
+                                   where x.Value.identification_id == PartsTb.identification_id
+                                   select x.Value.data;
 
+                Debug.WriteLine("最終結果ではなく:  "+  VarManegement[new CalculateClass().ParallelogramOutput(String.Concat(Output))]);
+                return "-1";
             }
-
-           
-
-            //Symbolは-1がNo、0がYes、：が判定
-            /// 
-
-
-            //台形Symbolは0がNo、1がYes、：が判定
-            /// bool Kekka2 = new CalculateClass().TrapezoidCalculat(VarManegement, Shiki);
-
-
-
-
-
-
-
-
-
-            return NextId;
+            return "-1";
+          
         }
 
     }
