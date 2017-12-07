@@ -26,24 +26,24 @@ namespace LearningAlgo
                 //テストデータ
 
                 //flowデータ
-                connection.Insert(new FlowTable { flow_id = "0", flow_name = "1", comment = "test" });
+                connection.Insert(new FlowTable { flow_id = "8", flow_name = "1", comment = "test" });
 
                 //flowPartsデータ
-                connection.Insert(new FlowPartsTable { flow_id = "0", identification_id = "1", type_id = "1", data = "1→i", position = "10,30", startFlag = "1" });
-                connection.Insert(new FlowPartsTable { flow_id = "0", identification_id = "2", type_id = "1", data = "5→j", position = "10,70", startFlag = "0" });
-                connection.Insert(new FlowPartsTable { flow_id = "0", identification_id = "3", type_id = "1", data = "j＋1→j", position = "10,110", startFlag = "0" });
-                connection.Insert(new FlowPartsTable { flow_id = "0", identification_id = "4", type_id = "1", data = "i＋1→i", position = "10,150", startFlag = "0" });
-                connection.Insert(new FlowPartsTable { flow_id = "0", identification_id = "5", type_id = "2", data = "i≦3", position = "10,190", startFlag = "0" });
-                connection.Insert(new FlowPartsTable { flow_id = "0", identification_id = "6", type_id = "5", data = "j出力", position = "10,230", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "8", identification_id = "1", type_id = "1", data = "1→i", position = "10,30", startFlag = "1" });
+                connection.Insert(new FlowPartsTable { flow_id = "8", identification_id = "2", type_id = "1", data = "5→j", position = "10,70", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "8", identification_id = "3", type_id = "1", data = "j＋1→j", position = "10,110", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "8", identification_id = "4", type_id = "1", data = "i＋1→i", position = "10,150", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "8", identification_id = "5", type_id = "2", data = "i≦3", position = "10,190", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "8", identification_id = "6", type_id = "5", data = "j出力", position = "10,230", startFlag = "0" });
 
                 //outputデータ
-                connection.Insert(new OutputTable { flow_id = "0", identification_id = "1", blanch_flag="0", output_identification_id = "2" });
-                connection.Insert(new OutputTable { flow_id = "0", identification_id = "2", blanch_flag = "0", output_identification_id = "3" });
-                connection.Insert(new OutputTable { flow_id = "0", identification_id = "3", blanch_flag = "0", output_identification_id = "4" });
-                connection.Insert(new OutputTable { flow_id = "0", identification_id = "4", blanch_flag = "0", output_identification_id = "5" });
-                connection.Insert(new OutputTable { flow_id = "0", identification_id = "5", blanch_flag = "0", output_identification_id = "3" });
-                connection.Insert(new OutputTable { flow_id = "0", identification_id = "5", blanch_flag = "-1", output_identification_id = "6" });
-                connection.Insert(new OutputTable { flow_id = "0", identification_id = "6", blanch_flag = "0", output_identification_id = "-1" });
+                connection.Insert(new OutputTable { flow_id = "8", identification_id = "1", blanch_flag="0", output_identification_id = "2" });
+                connection.Insert(new OutputTable { flow_id = "8", identification_id = "2", blanch_flag = "0", output_identification_id = "3" });
+                connection.Insert(new OutputTable { flow_id = "8", identification_id = "3", blanch_flag = "0", output_identification_id = "4" });
+                connection.Insert(new OutputTable { flow_id = "8", identification_id = "4", blanch_flag = "0", output_identification_id = "5" });
+                connection.Insert(new OutputTable { flow_id = "8", identification_id = "5", blanch_flag = "0", output_identification_id = "3" });
+                connection.Insert(new OutputTable { flow_id = "8", identification_id = "5", blanch_flag = "-1", output_identification_id = "6" });
+                connection.Insert(new OutputTable { flow_id = "8", identification_id = "6", blanch_flag = "0", output_identification_id = "-1" });
 
 
                 

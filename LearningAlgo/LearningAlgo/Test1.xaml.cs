@@ -140,17 +140,34 @@ namespace LearningAlgo
          */
         public async Task<string> TypeCalculate(FlowPartstable PartsTb)
         {
-            /*形状四角のばあい*/
-            if (PartsTb.type_id == "1")
+                /*形状四角のばあい*/
+                if (PartsTb.type_id == "1")
             {
                 VarManegement = new CalculateClass().SquareCalculate(VarManegement, PartsTb.data);
-
-                string ax = await IandJ();
-
                 var StartPossition2 = from x in DbInsertListTb3
                                       where x.Value.identification_id == PartsTb.identification_id
                                       select x.Key;
 
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    try
+                    {
+                        Debug.WriteLine("四角で受け取るiの値:" + VarManegement["i"].ToString());
+                        label1.Text = "i:   " + VarManegement["i"].ToString();
+                    }
+                    catch (Exception e) { }
+                    finally { }
+
+                    try
+                    {
+                        Debug.WriteLine("四角で受け取るiの値:" + VarManegement["j"].ToString());
+                        label2.Text = "j:   " + VarManegement["j"].ToString();
+                    }
+                    catch (Exception e) { }
+                    finally { }
+                });
+                /*表示用*/
+                await LabelInserter(PartsTb.data);
                 return DbInsertListTb3[StartPossition2.First()].output_identification_id;
             }
 
@@ -172,7 +189,21 @@ namespace LearningAlgo
                                          where x.Value.identification_id==PartsTb.identification_id
                                          && x.Value.blanch_flag == "-1"
                                          select x.Value.output_identification_id;
+
+                    await Task.Run(() =>
+                    {
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            label4.Text = label4.Text + "No" + "\n";
+                        });
+                        Thread.Sleep(1000);
+                    });
+
+
                     Debug.WriteLine("Noだった場合(-1)の時のリターン値：　" + NextIdFinder.First());
+
+                    /*表示用*/
+                    await LabelInserter(PartsTb.data);
                     return String.Concat(NextIdFinder.First());
                 }
                 else if (Symbol=="0")
@@ -181,8 +212,22 @@ namespace LearningAlgo
                                        where x.Value.identification_id == PartsTb.identification_id
                                          && x.Value.blanch_flag == "0"
                                        select x.Value.output_identification_id;
+                    await Task.Run(() =>
+                    {
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            label4.Text = label4.Text + "Yes" + "\n";
+                        });
+                        Thread.Sleep(1000);
+                    });
+
+
+
 
                     Debug.WriteLine("Yesだった場合(0)の時のリターン値：　" + NextIdFinder.First());
+
+                    /*表示用*/
+                    await LabelInserter(PartsTb.data);
                     return String.Concat(NextIdFinder.First());
 
                 }
@@ -203,6 +248,8 @@ namespace LearningAlgo
                                    where x.Value.identification_id == PartsTb.identification_id
                                    select x.Value.data;
 
+                /*表示用*/
+                await LabelInserter(PartsTb.data);
                 Debug.WriteLine("最終結果ではなく:  "+  VarManegement[new CalculateClass().ParallelogramOutput(String.Concat(Output))]);
                 label3.Text = "終了"+ String.Concat(Output)+"の解は"+ VarManegement[new CalculateClass().ParallelogramOutput(String.Concat(Output))];
                 return "-1";
@@ -212,35 +259,16 @@ namespace LearningAlgo
           
         }
 
-        public async Task<string> IandJ()
+        private async Task<string> LabelInserter(string data)
         {
             await Task.Run(() =>
             {
-                try
+                Device.BeginInvokeOnMainThread(() =>
                 {
-                    Debug.WriteLine("四角で受け取るiの値:" + VarManegement["i"].ToString());
-                    Device.BeginInvokeOnMainThread(() =>
-                    {
-                        label1.Text = "i:   " + VarManegement["i"].ToString();
-                    });
-                    
-                    Thread.Sleep(1000);
-                }
-                catch (Exception e) { }
-                finally { }
+                    label4.Text = label4.Text + data.ToString() + "\n";
+                });
 
-                try
-                {
-                    Debug.WriteLine("四角で受け取るiの値:" + VarManegement["j"].ToString());
-                    Device.BeginInvokeOnMainThread(() =>
-                    {
-                        label2.Text = "j:   " + VarManegement["j"].ToString();
-                    });
-
-                    Thread.Sleep(1000);
-                }
-                catch (Exception e) { }
-                finally { }
+                Thread.Sleep(1000);
             });
             return "";
         }
@@ -260,6 +288,8 @@ namespace LearningAlgo
              * トレース実際にやってみた*/
             label1.Text = "i:   0";
             label2.Text = "j:   0";
+            VarManegement.Clear();
+            label4.Text = "";
             label3.Text = "開始";
             TracePreviewer();
         }

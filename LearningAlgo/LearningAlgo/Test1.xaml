@@ -24,6 +24,10 @@
                        Text="j:   0"/>
                 <Label x:Name="label3"
                        Text="プリセットよめ"/>
+                <ScrollView>
+                    <Label x:Name="label4"
+                       Text=""/>
+                </ScrollView>
 
             </StackLayout>
         </StackLayout>
