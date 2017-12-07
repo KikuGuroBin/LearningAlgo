@@ -45,33 +45,33 @@ namespace LearningAlgo
                     var count = connection.ExecuteScalar<int>("DELETE FROM FlowTable WHERE flow_id =" + items.flow_id + ";");
                 }
 
-            /*テストデータ*/
-                //flowデータ
-                connection.Insert(new FlowTable { flow_id = 1, flow_name = "1", comment = "test" });
+                /*******テストデータ*********/
+                /*flowデータ*/
+                connection.Insert(new FlowTable { flow_id = "1", flow_name = "1", comment = "test" });
 
                 /*flowPartsデータ*/
-                connection.Insert(new FlowPartsTable { flow_id = 1, identification_id = 1, type_id = "1", data = "1→i", position = "10,30", startFlag = "1" });
-                connection.Insert(new FlowPartsTable { flow_id = 1, identification_id = 2, type_id = "2", data = "2→j", position = "10,70", startFlag = "0" });
-                connection.Insert(new FlowPartsTable { flow_id = 1, identification_id = 3, type_id = "3", data = "j＋1→j", position = "10,110", startFlag = "0" });
-                connection.Insert(new FlowPartsTable { flow_id = 1, identification_id = 4, type_id = "4", data = "i＋1→i", position = "10,150", startFlag = "0" });
-                connection.Insert(new FlowPartsTable { flow_id = 1, identification_id = 5, type_id = "5", data = "i≦3", position = "10,190", startFlag = "0" });
-                connection.Insert(new FlowPartsTable { flow_id = 1, identification_id = 6, type_id = "6", data = "j出力", position = "10,230", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "1", identification_id = "1", type_id = "1", data = "1→i", position_X = "10", position_Y = "70", startFlag = "1" });
+                connection.Insert(new FlowPartsTable { flow_id = "1", identification_id = "2", type_id = "2", data = "2→j", position_X = "10", position_Y = "140", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "1", identification_id = "3", type_id = "3", data = "j＋1→j", position_X = "10", position_Y = "210", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "1", identification_id = "4", type_id = "4", data = "i＋1→i", position_X = "10", position_Y = "280", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "1", identification_id = "5", type_id = "5", data = "i≦3", position_X = "10", position_Y = "350", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "1", identification_id = "6", type_id = "6", data = "j出力", position_X = "10", position_Y = "420", startFlag = "0" });
 
                 /*outputデータ*/
-                connection.Insert(new OutputTable { flow_id = 1, identification_id = 1, output_identification_id = "2" });
-                connection.Insert(new OutputTable { flow_id = 1, identification_id = 2, output_identification_id = "3" });
-                connection.Insert(new OutputTable { flow_id = 1, identification_id = 3, output_identification_id = "4" });
-                connection.Insert(new OutputTable { flow_id = 1, identification_id = 4, output_identification_id = "5" });
-                connection.Insert(new OutputTable { flow_id = 1, identification_id = 5, output_identification_id = "3" });
-                connection.Insert(new OutputTable { flow_id = 1, identification_id = 5, output_identification_id = "6" });
-                connection.Insert(new OutputTable { flow_id = 1, identification_id = 6, output_identification_id = "-1" });
+                connection.Insert(new OutputTable { flow_id = "1", identification_id = "1", output_identification_id = "2" });
+                connection.Insert(new OutputTable { flow_id = "1", identification_id = "2", output_identification_id = "3" });
+                connection.Insert(new OutputTable { flow_id = "1", identification_id = "3", output_identification_id = "4" });
+                connection.Insert(new OutputTable { flow_id = "1", identification_id = "4", output_identification_id = "5" });
+                connection.Insert(new OutputTable { flow_id = "1", identification_id = "5", output_identification_id = "3" });
+                connection.Insert(new OutputTable { flow_id = "1", identification_id = "5", output_identification_id = "6" });
+                connection.Insert(new OutputTable { flow_id = "1", identification_id = "6", output_identification_id = "-1" });
 
                 /*typeデータ*/
-                connection.Insert(new TypeTable { type_id = 1, type_name = "1", output = "1" });
-                connection.Insert(new TypeTable { type_id = 2, type_name = "2", output = "2" });
-                connection.Insert(new TypeTable { type_id = 3, type_name = "3", output = "1" });
-                connection.Insert(new TypeTable { type_id = 4, type_name = "4", output = "1" });
-                connection.Insert(new TypeTable { type_id = 5, type_name = "5", output = "1" });
+                connection.Insert(new TypeTable { type_id = "1", type_name = "1", output = "1" });
+                connection.Insert(new TypeTable { type_id = "2", type_name = "2", output = "2" });
+                connection.Insert(new TypeTable { type_id = "3", type_name = "3", output = "1" });
+                connection.Insert(new TypeTable { type_id = "4", type_name = "4", output = "1" });
+                connection.Insert(new TypeTable { type_id = "5", type_name = "5", output = "1" });
 
 
                 foreach (var items in (from x in connection.Table<FlowTable>() orderby x.flow_id select x))
