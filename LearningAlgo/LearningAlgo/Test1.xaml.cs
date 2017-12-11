@@ -16,6 +16,7 @@ namespace LearningAlgo
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Test1 : ContentPage
     {
+
         /// <summary>
         /// プリセットテーブル　プリID、各テーブルの中身(日にちとかプリIDとか)
         /// </summary>
