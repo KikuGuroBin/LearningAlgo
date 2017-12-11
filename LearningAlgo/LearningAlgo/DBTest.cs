@@ -20,42 +20,51 @@ namespace LearningAlgo
         protected async void OnAppearing()
         {
             using (var connection = await CreateConnection())
-            /* DBへのコネクションを取得してくるConnection())*/
+            /* DBへのコネクションを取得してくるConnection()*/
             {
                 /*初期化*/
-                foreach (var items in (from x in connection.Table<FlowTable>() orderby x.flow_id select x))
-                {
-                    //connection.Delete(items.flow_id);
-                    System.Diagnostics.Debug.WriteLine("FlowTable" + " " + items.flow_id + " " + items.flow_name + " " + items.comment);
-                    var count = connection.ExecuteScalar<int>("DELETE FROM FlowTable WHERE flow_id =" + items.flow_id + ";");
-                }
-                foreach (var items in (from x in connection.Table<TypeTable>() orderby x.type_id select x))
-                {
-                    System.Diagnostics.Debug.WriteLine("TypeTable" + " " + items.type_id + " " + items.type_name + " " + items.output);
-                    var count = connection.ExecuteScalar<int>("DELETE FROM FlowTable WHERE flow_id =" + items.type_id + ";");
-                }
-                foreach (var items in (from x in connection.Table<FlowPartsTable>() orderby x.flow_id select x))
-                {
-                    System.Diagnostics.Debug.WriteLine("FlowPartsTable" + " " + items.flow_id + " " + items.identification_id + " " + items.type_id + " " + items.data + " " + items.position + " " + items.startFlag);
-                    var count = connection.ExecuteScalar<int>("DELETE FROM FlowTable WHERE flow_id =" + items.flow_id + ";");
-                }
-                foreach (var items in (from x in connection.Table<OutputTable>() orderby x.flow_id select x))
-                {
-                    System.Diagnostics.Debug.WriteLine("OutputTable" + " " + items.flow_id + " " + items.identification_id + " " + items.output_identification_id);
-                    var count = connection.ExecuteScalar<int>("DELETE FROM FlowTable WHERE flow_id =" + items.flow_id + ";");
-                }
+                //foreach (var items in (from x in connection.Table<FlowTable>() orderby x.flow_id select x))
+                //{
+                //    //connection.Delete(items.flow_id);
+                //    System.Diagnostics.Debug.WriteLine("FlowTable" + " " + items.flow_id + " " + items.flow_name + " " + items.comment);
+                //    var count = connection.ExecuteScalar<int>("DELETE FROM FlowTable WHERE flow_id =" + items.flow_id + ";");
+                //}
+                //foreach (var items in (from x in connection.Table<TypeTable>() orderby x.type_id select x))
+                //{
+                //    System.Diagnostics.Debug.WriteLine("TypeTable" + " " + items.type_id + " " + items.type_name + " " + items.output);
+                //    var count = connection.ExecuteScalar<int>("DELETE FROM FlowTable WHERE flow_id =" + items.type_id + ";");
+                //}
+                //foreach (var items in (from x in connection.Table<FlowPartsTable>() orderby x.flow_id select x))
+                //{
+                //    System.Diagnostics.Debug.WriteLine("FlowPartsTable" + " " + items.flow_id + " " + items.identification_id + " " + items.type_id + " " + items.data + " " + items.position + " " + items.startFlag);
+                //    var count = connection.ExecuteScalar<int>("DELETE FROM FlowTable WHERE flow_id =" + items.flow_id + ";");
+                //}
+                //foreach (var items in (from x in connection.Table<OutputTable>() orderby x.flow_id select x))
+                //{
+                //    System.Diagnostics.Debug.WriteLine("OutputTable" + " " + items.flow_id + " " + items.identification_id + " " + items.output_identification_id);
+                //    var count = connection.ExecuteScalar<int>("DELETE FROM FlowTable WHERE flow_id =" + items.flow_id + ";");
+                //}
 
                 /*******テストデータ*********/
                 /*flowデータ*/
                 connection.Insert(new FlowTable { flow_id = "1", flow_name = "1", comment = "test" });
 
+                connection.Insert(new FlowTable { flow_id = "2", flow_name = "2", comment = "quizeTest" });
+
                 /*flowPartsデータ*/
                 connection.Insert(new FlowPartsTable { flow_id = "1", identification_id = "1", type_id = "1", data = "1→i", position_X = "10", position_Y = "70", startFlag = "1" });
-                connection.Insert(new FlowPartsTable { flow_id = "1", identification_id = "2", type_id = "2", data = "2→j", position_X = "10", position_Y = "140", startFlag = "0" });
-                connection.Insert(new FlowPartsTable { flow_id = "1", identification_id = "3", type_id = "3", data = "j＋1→j", position_X = "10", position_Y = "210", startFlag = "0" });
-                connection.Insert(new FlowPartsTable { flow_id = "1", identification_id = "4", type_id = "4", data = "i＋1→i", position_X = "10", position_Y = "280", startFlag = "0" });
-                connection.Insert(new FlowPartsTable { flow_id = "1", identification_id = "5", type_id = "5", data = "i≦3", position_X = "10", position_Y = "350", startFlag = "0" });
-                connection.Insert(new FlowPartsTable { flow_id = "1", identification_id = "6", type_id = "6", data = "j出力", position_X = "10", position_Y = "420", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "1", identification_id = "2", type_id = "1", data = "2→j", position_X = "10", position_Y = "140", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "1", identification_id = "3", type_id = "1", data = "j＋1→j", position_X = "10", position_Y = "210", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "1", identification_id = "4", type_id = "1", data = "i＋1→i", position_X = "10", position_Y = "280", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "1", identification_id = "5", type_id = "2", data = "i≦3", position_X = "10", position_Y = "350", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "1", identification_id = "6", type_id = "5", data = "j出力", position_X = "10", position_Y = "420", startFlag = "0" });
+
+                connection.Insert(new FlowPartsTable { flow_id = "2", identification_id = "1", type_id = "1", data = "1→i", position_X = "10", position_Y = "70", startFlag = "1" });
+                connection.Insert(new FlowPartsTable { flow_id = "2", identification_id = "2", type_id = "1", data = "null", position_X = "10", position_Y = "140", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "2", identification_id = "3", type_id = "1", data = "j＋1→j", position_X = "10", position_Y = "210", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "2", identification_id = "4", type_id = "1", data = "i＋1→i", position_X = "10", position_Y = "280", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "2", identification_id = "5", type_id = "2", data = "null", position_X = "10", position_Y = "350", startFlag = "0" });
+                connection.Insert(new FlowPartsTable { flow_id = "2", identification_id = "6", type_id = "5", data = "j出力", position_X = "10", position_Y = "420", startFlag = "0" });
 
                 /*outputデータ*/
                 connection.Insert(new OutputTable { flow_id = "1", identification_id = "1", output_identification_id = "2" });
@@ -73,6 +82,13 @@ namespace LearningAlgo
                 connection.Insert(new TypeTable { type_id = "4", type_name = "4", output = "1" });
                 connection.Insert(new TypeTable { type_id = "5", type_name = "5", output = "1" });
 
+                /*quizeテーブルのデータ*/
+                connection.Insert(new QuizTable { flow_id = "2", quiz_flow_id = "q1"});
+
+                /*spaceFlowPartsデータ*/
+                connection.Insert(new SpaceIdentificationTable { quiz_flow_id = "q1", space_identification_id = "2" });
+                connection.Insert(new SpaceIdentificationTable { quiz_flow_id = "q1", space_identification_id = "5" });
+
 
                 foreach (var items in (from x in connection.Table<FlowTable>() orderby x.flow_id select x))
                 {
@@ -85,11 +101,19 @@ namespace LearningAlgo
                 }
                 foreach (var items in (from x in connection.Table<FlowPartsTable>() orderby x.flow_id select x))
                 {
-                    System.Diagnostics.Debug.WriteLine("FlowPartsTable" + " " + items.flow_id + " " + items.identification_id + " " + items.type_id + " " + items.data + " " + items.position + " " + items.startFlag);
+                    System.Diagnostics.Debug.WriteLine("FlowPartsTable" + " " + items.flow_id + " " + items.identification_id + " " + items.type_id + " " + items.data + " " + items.position_X + " " + items.position_Y + " " + items.startFlag);
                 }
                 foreach (var items in (from x in connection.Table<OutputTable>() orderby x.flow_id select x))
                 {
                     System.Diagnostics.Debug.WriteLine("OutputTable" + " " + items.flow_id + " " + items.identification_id + " " + items.output_identification_id);
+                }
+                foreach (var items in (from x in connection.Table<QuizTable>() orderby x.flow_id select x))
+                {
+                    System.Diagnostics.Debug.WriteLine("QuizeTable" + " " + items.flow_id + " " + items.quiz_flow_id);
+                }
+                foreach (var items in (from x in connection.Table<SpaceIdentificationTable>() orderby x.quiz_flow_id select x))
+                {
+                    System.Diagnostics.Debug.WriteLine("SpaceIdentificationTable" + " " + items.quiz_flow_id + " " + items.space_identification_id);
                 }
                 connection.Close();
             }
@@ -114,6 +138,8 @@ namespace LearningAlgo
                 connection.CreateTable<FlowPartsTable>();
                 connection.CreateTable<OutputTable>();
                 connection.CreateTable<TypeTable>();
+                connection.CreateTable<QuizTable>();
+                connection.CreateTable<SpaceIdentificationTable>();
 
                 return connection;
             }
@@ -127,10 +153,13 @@ namespace LearningAlgo
                 var connection = new SQLiteConnection(file.Path);
 
                 /*テーブルを1回消去する*/
-                //connection.DropTable<FlowTable>();
-                //connection.DropTable<FlowPartsTable>();
-                //connection.DropTable<OutputTable>();
-                //connection.DropTable<TypeTable>();
+                connection.DropTable<FlowTable>();
+                connection.DropTable<FlowPartsTable>();
+                connection.DropTable<OutputTable>();
+                connection.DropTable<TypeTable>();
+                connection.DropTable<QuizTable>();
+                connection.DropTable<SpaceIdentificationTable>();
+
 
                 /*テーブルを新たに作成する*/
                 if (connection.GetTableInfo("DBtestDeta ").Count <= 0)
@@ -139,6 +168,8 @@ namespace LearningAlgo
                     connection.CreateTable<FlowPartsTable>();
                     connection.CreateTable<OutputTable>();
                     connection.CreateTable<TypeTable>();
+                    connection.CreateTable<QuizTable>();
+                    connection.CreateTable<SpaceIdentificationTable>();
 
                     return connection;
                 }
