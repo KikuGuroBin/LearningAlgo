@@ -12,7 +12,9 @@ namespace LearningAlgo
         public string flow_name { get; set; }
         public string comment { get; set; }
     }
-    /**/
+    /// <summary>
+    /// プリセット構造体
+    /// </summary>
     public class Flowtable
     {
         public string flow_id { get; set; }
