@@ -41,7 +41,8 @@ namespace LearningAlgo
                         identification_id = preset.identification_id,
                         type_id = preset.type_id,
                         data = preset.data,
-                        position = preset.position,
+                        position_x = preset.position_X,
+                        position_y = preset.position_Y,
                         startFlag = preset.startFlag
                     };
                 }
@@ -70,7 +71,7 @@ namespace LearningAlgo
                     {
                         flow_id = preset.flow_id,
                         identification_id = preset.identification_id,
-                        blanch_flag=preset.blanch_flag,
+                        blanch_flag = preset.blanch_flag,
                         output_identification_id = preset.output_identification_id
                     };
                     

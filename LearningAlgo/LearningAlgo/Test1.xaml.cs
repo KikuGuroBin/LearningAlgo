@@ -94,7 +94,6 @@ namespace LearningAlgo
                 {
                     var l = s as Button;
                     var text = l.Text;
-                    Debug.WriteLine("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                     PresetSet(text);
                 };
                 
@@ -141,8 +140,9 @@ namespace LearningAlgo
          */
         public async Task<string> TypeCalculate(FlowPartstable PartsTb)
         {
+            
                 /*形状四角のばあい*/
-                if (PartsTb.type_id == "1")
+                if (PartsTb.type_id == "SideSikaku.png")
             {
                 VarManegement = new CalculateClass().SquareCalculate(VarManegement, PartsTb.data);
                 var StartPossition2 = from x in DbInsertListTb3
@@ -173,7 +173,7 @@ namespace LearningAlgo
             }
 
             /*形状ひし形のばあい*/
-            else if (PartsTb.type_id == "2")
+            else if (PartsTb.type_id == "SideHisigata.png")
             {
                 (string Symbol, int b, int c) JudgAnsower = new CalculateClass().DiamondCalculat(VarManegement, PartsTb.data);
                 string Symbol = JudgAnsower.Symbol;
@@ -221,10 +221,7 @@ namespace LearningAlgo
                         });
                         Thread.Sleep(1000);
                     });
-
-
-
-
+                    
                     Debug.WriteLine("Yesだった場合(0)の時のリターン値：　" + NextIdFinder.First());
 
                     /*表示用*/
@@ -234,13 +231,13 @@ namespace LearningAlgo
                 }
 
             }
-            else if (PartsTb.type_id == "3")
+            else if (PartsTb.type_id == "SideDaikeiUe.png")
             {
             }
-            else if (PartsTb.type_id == "4")
+            else if (PartsTb.type_id == "SideDaikeiSita.png")
             {
             }
-            else if (PartsTb.type_id == "5")
+            else if (PartsTb.type_id == "SideHeikou.png")
             {
                 var NextIdFinder = from x in DbInsertListTb3
                                    where x.Value.identification_id == PartsTb.identification_id

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LearningAlgo"
+             x:Class="LearningAlgo.Test1">
+    <ContentPage.Content>
+        <StackLayout>
+            <Button x:Name="b1"
+                    Text="プリセット1の呼び出しボタン"
+                    Clicked="b1_Clicked"/>
+
+            <Button x:Name="b2"
+                    Text="トレースの呼び出しボタン"
+                    Clicked="b2_Clicked"/>
+            <StackLayout
+                VerticalOptions="FillAndExpand"
+                >
+                <ScrollView x:Name="PrisetScroll">
+                    <StackLayout  x:Name="Priset"/>
+                </ScrollView>
+                    <Label x:Name="label1"
+                       Text="i:   0"/>
+                <Label x:Name="label2"
+                       Text="j:   0"/>
+                <Label x:Name="label3"
+                       Text="プリセットよめ"/>
+                <ScrollView>
+                    <Label x:Name="label4"
+                       Text=""/>
+                </ScrollView>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
