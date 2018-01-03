@@ -6,6 +6,9 @@
         <AbsoluteLayout x:Name="Main">
             <Button Text="fuck me!!"
                     Clicked="OnClick"/>
+            <BoxView Color="Black"
+                     WidthRequest="2"
+                     HeightRequest="200"/>
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
