@@ -50,9 +50,9 @@ namespace LearningAlgo
 
             /* 以下の2つのメソッドどちらかで線の引き方を選ぶ */
 
-            var line = Canvas.Side();
+            /* var line = Canvas.Side(); */
 
-            /* var line = Canvas.Tail(); */
+            var line = Canvas.Tail();
 
             /* 管理用リストに格納 */
             Lines.Add(line);

@@ -13,7 +13,7 @@ namespace LearningAlgo
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage(new LineCanvasDemo());
+			MainPage = new NavigationPage(new Page4());
 		}
 
 		protected override void OnStart ()
